@@ -7,7 +7,8 @@ import passport from 'passport';
 
 import { CONFIG, morgan, passport as jwtStrategy } from './config';
 import { error, rateLimit, xss } from './middlewares';
-import routes from './routes/v1';
+import routesV1 from './routes/v1';
+import routesServices from './routes/services';
 import { ApiError } from './utils';
 
 const app = express();
@@ -46,7 +47,10 @@ if (CONFIG.env === 'production') {
 }
 
 // v1 api routes
-app.use('/v1', routes);
+app.use('/v1', routesV1);
+
+// reclaim api routes
+app.use('/services',routesServices)
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {

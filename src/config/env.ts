@@ -9,7 +9,7 @@ const envVarsSchema = Joi.object()
     // Meta variables
     NODE_ENV: Joi.string().valid('production', 'development', 'test').required(),
     PORT: Joi.number().default(5000).description('Port to run the server'),
-
+   
     // JWT
     JWT_SECRET: Joi.string().required().description('JWT secret key'),
     JWT_ACCESS_EXPIRATION_MINUTES: Joi.number().default(30).description('minutes after which access tokens expire'),
@@ -27,6 +27,10 @@ const envVarsSchema = Joi.object()
     SMTP_USERNAME: Joi.string().description('username for email server'),
     SMTP_PASSWORD: Joi.string().description('password for email server'),
     EMAIL_FROM: Joi.string().description('the from field in the emails sent by the app'),
+
+    //Reclaim protocol environment variables 
+    RECLAIM_APP_ID:  Joi.string().required().description("Reclaim APP Id"),
+    RECLAIM_APP_SECRET_KEY:  Joi.string().required().description("Reclaim Secret Key"),
   })
   .unknown();
 
@@ -57,5 +61,9 @@ export default {
     },
     from: envVars.EMAIL_FROM,
   },
+  reclaim: {
+    id:  envVars.RECLAIM_APP_ID,
+    secret: envVars.RECLAIM_APP_SECRET_KEY
+  }
 };
 

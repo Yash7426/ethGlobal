@@ -3,7 +3,7 @@ import httpStatus from 'http-status';
 import passport from 'passport';
 
 import { ApiError } from '../utils';
-
+declare interface IUser {}
 const verifyCallback =
   (req: any, resolve: (value?: unknown) => void, reject: (reason?: unknown) => void, requiredRights: string[]) =>
   async (err: unknown, user: IUser, info: unknown) => {
