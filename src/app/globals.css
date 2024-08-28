@@ -2,32 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+.inter-font {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+}
+.ripple {
+  position: relative;
+  width: 400px;
+  height: 400px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.circle {
+  top: 120px;
+  right: 100px;
+  position: absolute;
+  animation: ripple 6s infinite ease-in-out;
+  filter: blur(15px);
+}
+
+.delay2 {
+  top: 120px;
+  right: 100px;
+  filter: blur(15px);
+  animation: ripple 6s infinite 2s ease-in-out;
+}
+.delay3 {
+  top: 120px;
+  right: 100px;
+  filter: blur(15px);
+  animation: ripple 6s infinite 4s ease-in-out;
+}
+
+@keyframes ripple {
+  0% {
+    scale: 0;
+    opacity: 0;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  25% {
+    scale: 0.25;
+    opacity: 0.15;
+  }
+  50% {
+    scale: 0.5;
+    opacity: 0.2;
+  }
+  75% {
+    scale: 0.75;
+    opacity: 0.15;
+  }
+  100% {
+    scale: 1;
+    opacity: 0;
   }
 }
