@@ -2,46 +2,136 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+
+import {
+  cubicBezier,
+  domAnimation,
+  LazyMotion,
+  m,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { anim } from "@/lib/utils";
+export const slideUpOpacity = {
+  initial: {
+    y: 40,
+    opacity: 0,
+    filter: "blur(10px)",
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.7,
+      delay: 0.05,
+      type: "tween",
+    },
+  },
+};
+
+export const scaleUpOpacity = {
+  initial: {
+    scale: 0,
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.6, type: "tween", delay: 0.05 },
+  },
+};
+
+export const blurOutFadeIn = {
+  initial: {
+    filter: "blur(15px)",
+    opacity: 0,
+  },
+  animate: {
+    filter: "blur(0px)",
+    opacity: 1,
+    transition: { duration: 0.7, type: "tween" },
+  },
+};
+
 const page = () => {
   return (
-    <div className="flex bg-gray-200 rounded-lg shadow-md w-full h-screen z-50 flex-row items-center justify-center relative">
-      <div class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-      {/* Left Section - Login Form */}
-      <div className="w-full max-w-xl md:w-1/2 px-8 flex flex-col justify-center items-center z-50 relative">
-        <h2
-          className="text-4xl font-mono font-extrabold text-gray-700 text-center mb-6 animate-typing overflow-hidden whitespace-nowrap
-          border-r-4 border-r-gray-700"
-        >
-          SignIn into your account
-        </h2>
-        {/* <p className="text-gray-500 text-center mb-6"></p> */}
-        <button className="flex items-center justify-center px-20 py-3 mb-4 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white transition-all duration-200 hover:text-white hover:bg-gray-700">
-          Log in with Google
-        </button>
+    <LazyMotion features={domAnimation}>
+      <m.section
+        {...anim(blurOutFadeIn)}
+        className="min-h-screen flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-lg"
+      >
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent,#0e023524,#0e0235f4_70%)] mix-blend-luminosity"></div>
+        <div className="w-full max-w-md mx-auto  p-8 rounded-lg z-10">
+          <div className="text-center mb-6">
+            {/* Add your logo here */}
+            <m.div
+              {...anim(slideUpOpacity)}
+              className="flex justify-center items-center mb-4 text-white"
+            >
+              <h2>LOGO</h2>
+            </m.div>
+            <m.h2
+              {...anim(slideUpOpacity)}
+              className="text-4xl font-bold text-white font-primary-font"
+            >
+              Login to NAME
+            </m.h2>
+          </div>
 
-        <button className="flex items-center justify-center px-20 py-3 mb-4 border border-gray-300 rounded-lg text-sm font-medium text-white bg-gray-700 transition-all duration-200 hover:text-black  hover:bg-gray-100">
-          Log in with GitHub
-        </button>
-        <button className="flex items-center justify-center px-20 py-3 mb-4 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white transition-all duration-200 hover:text-white hover:bg-gray-700">
-          Log in with GitHub
-        </button>
-        <button className="flex items-center justify-center px-20 py-3 mb-4 border border-gray-300 rounded-lg text-sm font-medium text-white bg-gray-700 transition-all duration-200 hover:text-black  hover:bg-gray-100">
-          Log in with GitHub
-        </button>
-        <h5 className="text-grey-900  font-light text-sm text-start">
-          Don't have an account, <Link href=""> Register</Link>
-        </h5>
-      </div>
-      {/* Right Section - Image */}
-      <div className="relative">
-        <img
-          src="./finance-growth.svg"
-          layout="fill"
-          alt="Login Side Image"
-          className="object-cover max-w-2xl max-h-2xl"
-        />
-      </div>
-    </div>
+          <m.div className="space-y-4">
+            <m.button
+              {...anim(slideUpOpacity)}
+              className="w-full px-4 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+            >
+              Login with faceLock
+            </m.button>
+
+            <m.button
+              {...anim(slideUpOpacity)}
+              className="w-full px-8 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 flex flex-row justify-start items-center gap-14"
+            >
+              <Image
+                src="ethereum.svg"
+                alt="Etherium"
+                height={20}
+                width={20}
+                className=""
+              />
+              Continue with Etherium
+            </m.button>
+
+            <m.button
+              {...anim(slideUpOpacity)}
+              className="w-full px-8 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 flex flex-row justify-start items-center gap-14"
+            >
+              <Image
+                src="base.svg"
+                alt="base"
+                height={20}
+                width={20}
+                className=""
+              />
+              Continue with base
+            </m.button>
+
+            <m.button
+              {...anim(slideUpOpacity)}
+              className="w-full px-8 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 flex flex-row justify-start items-center gap-14"
+            >
+              <Image
+                src="solana.svg"
+                alt="base"
+                height={20}
+                width={20}
+                className=""
+              />
+              Continue with solana
+            </m.button>
+          </m.div>
+        </div>
+      </m.section>
+    </LazyMotion>
   );
 };
 
@@ -82,3 +172,40 @@ export default page;
         </div>
       </div> */
 }
+//  <div className="flex bg-slate-950 rounded-lg shadow-md w-full h-screen z-50 flex-row items-center justify-center relative">
+//       <div class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+//       {/* Left Section - Login Form */}
+//       <div className="w-full max-w-xl md:w-1/2 px-8 flex flex-col justify-center items-center z-50 relative">
+//         <h2
+//           className="text-5xl font-mono font-extrabold text-gray-200 text-center mb-6 animate-typing overflow-hidden whitespace-nowrap
+//           border-r-4 border-r-white"
+//         >
+//           SignIn into your account
+//         </h2>
+//         {/* <p className="text-gray-500 text-center mb-6"></p> */}
+//         <button className="flex items-center justify-center px-20 py-3 mb-4 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-gray-200 transition-all duration-200 hover:text-white hover:bg-gray-700">
+//           Log in with Google
+//         </button>
+//         <button className="flex items-center justify-center px-20 py-3 mb-4 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-gray-200 transition-all duration-200 hover:text-white hover:bg-gray-700">
+//           Log in with Google
+//         </button>
+//         <button className="flex items-center justify-center px-20 py-3 mb-4 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-gray-200 transition-all duration-200 hover:text-white hover:bg-gray-700">
+//           Log in with GitHub
+//         </button>
+//         <button className="flex items-center justify-center px-20 py-3 mb-4 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-gray-200 transition-all duration-200 hover:text-white hover:bg-gray-700">
+//           Log in with Google
+//         </button>
+//         <h5 className="text-grey-900  font-light text-sm text-start">
+//           Don't have an account, <Link href=""> Register</Link>
+//         </h5>
+//       </div>
+//       {/* Right Section - Image */}
+//       <div className="relative">
+//         <img
+//           src="/finance-growth.svg"
+//           layout="fill"
+//           alt="Login Side Image"
+//           className="object-cover max-w-2xl max-h-2xl"
+//         />
+//       </div>
+//     </div>

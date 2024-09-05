@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import Particles from "../components/Particles";
 import Navbar from "../components/Navbar";
@@ -119,6 +120,14 @@ export default function Home() {
   const polygonX = useTransform(scrollYProgress, [0, 0.8], [0, 156], {
     ease: cubicBezier(0.45, 0, 0.55, 1),
   });
+
+  const router = useRouter();
+
+  const navigateToPage = () => {
+    // Navigate to the "/login" page
+    router.push("/login");
+  };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setShouldRender(true);
@@ -185,6 +194,7 @@ export default function Home() {
             </m.p>
 
             <m.button
+              onClick={navigateToPage}
               initial={{
                 y: 40,
                 opacity: 0,
@@ -349,6 +359,7 @@ export default function Home() {
             </Suspense>
           </div>
           <m.button
+            onClick={navigateToPage}
             initial={{
               y: 40,
               opacity: 0,
