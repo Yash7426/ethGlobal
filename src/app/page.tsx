@@ -347,7 +347,7 @@ export default function Home() {
             </div>
           </m.div>
         </section>
-        <section className="w-screen h-screen overflow-y-hidden relative flex justify-center items-center">
+        {/* <section className="w-screen h-screen overflow-y-hidden relative flex justify-center items-center">
           <div>
             <h1 className="text-[150px] text-gray-400 font-primary-font align-center tracking-tighter">
               Unified Identities
@@ -395,7 +395,7 @@ export default function Home() {
               />
             </svg>
           </m.button>
-        </section>
+        </section> */}
         <section></section>
       </div>
     </LazyMotion>

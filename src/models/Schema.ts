@@ -2,6 +2,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 interface IUser extends Document {
     username: string;
+    userProfile: string;
     ensDomain: string;
     completedTasks: mongoose.Types.ObjectId[];
 }
@@ -27,6 +28,9 @@ const UserSchema: Schema<IUser> = new Schema({
         type: String,
         unique: true,
         required: true
+    },
+    userProfile : {
+        type: String,
     },
     ensDomain: {
         type: String,
