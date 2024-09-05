@@ -62,7 +62,7 @@ const page = () => {
         className="min-h-screen flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-lg"
       >
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent,#0e023524,#0e0235f4_70%)] mix-blend-luminosity"></div>
-        <div className="w-full max-w-md mx-auto  p-8 rounded-lg z-10">
+        <div className="w-full max-w-md mx-auto p-8">
           <div className="text-center mb-6">
             {/* Add your logo here */}
             <m.div
@@ -73,7 +73,7 @@ const page = () => {
             </m.div>
             <m.h2
               {...anim(slideUpOpacity)}
-              className="text-4xl font-bold text-white font-primary-font"
+              className="text-5xl font-bold text-white font-primary-font"
             >
               Login to NAME
             </m.h2>
