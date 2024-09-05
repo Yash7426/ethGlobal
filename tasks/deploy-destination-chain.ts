@@ -2,13 +2,13 @@ import { task } from "hardhat/config";
 import { writeFileSync, mkdirSync, existsSync } from 'fs'
 import { join } from 'path';
 import { HardhatRuntimeEnvironment, TaskArguments } from "hardhat/types";
-import { CrossChainNameServiceLookup, CrossChainNameServiceLookup__factory, CrossChainNameServiceReceiver, CrossChainNameServiceReceiver__factory, CrossChainNameServiceRegister, CrossChainNameServiceRegister__factory } from "../typechain-types";
+import { CrossChainNameServiceLookup, CrossChainNameServiceLookup__factory, CrossChainNameServiceReceiver, CrossChainNameServiceReceiver__factory, CrossChainNameServiceRegister, CrossChainNameServiceRegister__factory, Lookup, Lookup__factory, Receiver, Receiver__factory, Register ,Register__factory} from "../typechain-types";
 import { __deploymentsPath, getDeploymentInfo, getRouterConfig } from "./utils";
 import { Spinner } from '../utils/spinner'
 
-task(`deploy-destination-chain-step1`, `Sets up the Cross Chain Name Service on the destination network by deployinh Lookup and Receiver smart contracts and linking them`)
+task(`deploy-destination-chain-step1`, `Sets up the Cross Chain Name Service on the destination network by deploying Lookup and Receiver smart contracts and linking them`)
     .addOptionalParam(`register`, `CrossChainNameServiceRegister smart contract address`)
-    .addOptionalParam(`sourceChainSelector`, `Source Chain Selector`)
+    .addOptionalParam(`sourcechainselector`, `Source Chain Selector`)
     .addOptionalParam(`router`, `The address of the Chainlink CCIP Router contract on the destination blockchain`)
     .setAction(async (taskArguments: TaskArguments, hre: HardhatRuntimeEnvironment) => {
 
@@ -30,6 +30,9 @@ task(`deploy-destination-chain-step1`, `Sets up the Cross Chain Name Service on 
         console.log(`ℹ️  Attempting to deploy CrossChainNameServiceLookup on the ${hre.network.name} blockchain using ${deployer.address} address`);
         spinner.start();
 
+        // const ccnsLookupFactory: Lookup__factory = await hre.ethers.getContractFactory('Lookup');
+        // const ccnsLookup: Lookup = await ccnsLookupFactory.deploy();
+        // await ccnsLookup.deployed();
         const ccnsLookupFactory: CrossChainNameServiceLookup__factory = await hre.ethers.getContractFactory('CrossChainNameServiceLookup');
         const ccnsLookup: CrossChainNameServiceLookup = await ccnsLookupFactory.deploy();
         await ccnsLookup.deployed();
@@ -39,16 +42,13 @@ task(`deploy-destination-chain-step1`, `Sets up the Cross Chain Name Service on 
 
 
         console.log(`ℹ️  Attempting to deploy CrossChainNameServiceReceiver on the ${hre.network.name} blockchain`);
-        spinner.start();
 
         const routerAddress = taskArguments.router ? taskArguments.router : getRouterConfig(hre.network.name).address;
-        const sourceChainSelector = taskArguments.sourceChainSelector ? taskArguments.sourceChainSelector : getRouterConfig(hre.config.defaultNetwork).chainSelector;
-
-        const ccnsReceiverFactory: CrossChainNameServiceReceiver__factory = await hre.ethers.getContractFactory('CrossChainNameServiceReceiver');
+        const sourceChainSelector = taskArguments.sourcechainselector ? taskArguments.sourcechainselector : getRouterConfig(hre.config.defaultNetwork).chainSelector;
+        const ccnsReceiverFactory: CrossChainNameServiceReceiver__factory = await hre.ethers.getContractFactory('Receiver');
         const ccnsReceiver: CrossChainNameServiceReceiver = await ccnsReceiverFactory.deploy(routerAddress, ccnsLookup.address, sourceChainSelector);
         await ccnsReceiver.deployed();
 
-        spinner.stop();
         console.log(`✅ CrossChainNameServiceReceiver deployed at address ${ccnsReceiver.address} on ${hre.network.name} blockchain`);
 
         const filePath = join(__deploymentsPath, `${hre.network.name}.json`);
@@ -66,15 +66,21 @@ task(`deploy-destination-chain-step1`, `Sets up the Cross Chain Name Service on 
             console.log(`ℹ️  Saving the CrossChainNameReceiver address to ${filePath} file failed, please save it manually from previous log, you will need it for further tasks`);
             console.error(`Error: ${error}`);
         }
-
+//  const ccnsLookup: Lookup = Lookup__factory.connect('0x063714A6b84b4dCa24573547CB0CD13F78887db6', deployer);
+//   const ccnsReceiver: Receiver = Receiver__factory.connect('0x72A4C1D977e638c8648898406C585F81c6a93224',deployer);
         console.log(`ℹ️  Attempting to call the setCrossChainNameServiceAddress function on the CrossChainNameServiceLookup smart contract`);
         spinner.start();
-
+        console.log("yes")
+        try{
         const tx = await ccnsLookup.setCrossChainNameServiceAddress(ccnsReceiver.address);
         await tx.wait();
 
         spinner.stop();
-        console.log(`✅ CCNS Address set, transaction hash: ${tx.hash}`);
+        console.log(`✅ CCNS Address set, transaction hash: ${tx.hash}`); 
+        } catch(e) {
+            console.log(e)
+        }
+        
 
         console.log(`✅ Task deploy-destination-chain-step1 finished with the execution`);
     })
@@ -84,7 +90,7 @@ task(`deploy-destination-chain-step2`, `Enables previously depolyed CrossChainNa
     .addParam(`receiverNetwork`, `The network you used in the deploy-destination-chain-step1 command`)
     .addOptionalParam(`register`, `CrossChainNameServiceRegister smart contract address`)
     .addOptionalParam(`receiver`, `CrossChainNameServiceReceiver smart contract address`)
-    .addOptionalParam(`destinationChainSelector`, `Destination Chain Selector`)
+    .addOptionalParam(`destinationchainselector`, `Destination Chain Selector`)
     .setAction(async (taskArguments: TaskArguments, hre: HardhatRuntimeEnvironment) => {
         if (hre.network.name !== hre.config.defaultNetwork) {
             console.error(`❌ Task two must be executed on the source chain. Source chain - ${hre.config.defaultNetwork}`);
@@ -98,9 +104,9 @@ task(`deploy-destination-chain-step2`, `Enables previously depolyed CrossChainNa
             return 1;
         }
 
-        const [deployer] = await hre.ethers.getSigners();
+        const [deployer] = await hre.ethers.getSigners()
 
-        const destinationChainSelector = taskArguments.destinationChainSelector ? taskArguments.destinationChainSelector : getRouterConfig(taskArguments.receiverNetwork).chainSelector;
+        const destinationChainSelector = taskArguments.destinationchainselector ? taskArguments.destinationchainselector : getRouterConfig(taskArguments.receiverNetwork).chainSelector;
         const ccnsReceiverAddress = taskArguments.receiver ? taskArguments.receiver : getDeploymentInfo(taskArguments.receiverNetwork).ccnsReceiver;
 
         const ccnsRegister: CrossChainNameServiceRegister = CrossChainNameServiceRegister__factory.connect(ccnsRegisterAddress, deployer);
@@ -109,8 +115,9 @@ task(`deploy-destination-chain-step2`, `Enables previously depolyed CrossChainNa
 
         console.log(`ℹ️  Attempting to call the enableChain function on the CrossChainNameServiceRegister smart contract on the ${hre.network.name} blockchain`);
         spinner.start();
-
-        const tx = await ccnsRegister.enableChain(destinationChainSelector, ccnsReceiverAddress, false, 200_000);
+        
+        console.log(destinationChainSelector)
+        const tx = await ccnsRegister.enableChain(destinationChainSelector, ccnsReceiverAddress, 200000);
         await tx.wait();
 
         spinner.stop();

@@ -27,37 +27,26 @@ import type {
   PromiseOrValue,
 } from "../common";
 
-export interface CrossChainNameServiceRegisterInterface
-  extends utils.Interface {
+export interface RegisterInterface extends utils.Interface {
   functions: {
-    "acceptOwnership()": FunctionFragment;
     "enableChain(uint64,address,uint256)": FunctionFragment;
     "i_lookup()": FunctionFragment;
     "i_router()": FunctionFragment;
-    "owner()": FunctionFragment;
     "register(string,address)": FunctionFragment;
     "s_chains(uint256)": FunctionFragment;
-    "transferOwnership(address)": FunctionFragment;
     "withdraw(address)": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
-      | "acceptOwnership"
       | "enableChain"
       | "i_lookup"
       | "i_router"
-      | "owner"
       | "register"
       | "s_chains"
-      | "transferOwnership"
       | "withdraw"
   ): FunctionFragment;
 
-  encodeFunctionData(
-    functionFragment: "acceptOwnership",
-    values?: undefined
-  ): string;
   encodeFunctionData(
     functionFragment: "enableChain",
     values: [
@@ -68,7 +57,6 @@ export interface CrossChainNameServiceRegisterInterface
   ): string;
   encodeFunctionData(functionFragment: "i_lookup", values?: undefined): string;
   encodeFunctionData(functionFragment: "i_router", values?: undefined): string;
-  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "register",
     values: [PromiseOrValue<string>, PromiseOrValue<string>]
@@ -78,72 +66,49 @@ export interface CrossChainNameServiceRegisterInterface
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "transferOwnership",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
     functionFragment: "withdraw",
     values: [PromiseOrValue<string>]
   ): string;
 
-  decodeFunctionResult(
-    functionFragment: "acceptOwnership",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(
     functionFragment: "enableChain",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "i_lookup", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "i_router", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "register", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "s_chains", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "transferOwnership",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
 
   events: {
-    "OwnershipTransferRequested(address,address)": EventFragment;
-    "OwnershipTransferred(address,address)": EventFragment;
+    "Log(string)": EventFragment;
+    "LogBytes(bytes)": EventFragment;
   };
 
-  getEvent(nameOrSignatureOrTopic: "OwnershipTransferRequested"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Log"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "LogBytes"): EventFragment;
 }
 
-export interface OwnershipTransferRequestedEventObject {
-  from: string;
-  to: string;
+export interface LogEventObject {
+  message: string;
 }
-export type OwnershipTransferRequestedEvent = TypedEvent<
-  [string, string],
-  OwnershipTransferRequestedEventObject
->;
+export type LogEvent = TypedEvent<[string], LogEventObject>;
 
-export type OwnershipTransferRequestedEventFilter =
-  TypedEventFilter<OwnershipTransferRequestedEvent>;
+export type LogEventFilter = TypedEventFilter<LogEvent>;
 
-export interface OwnershipTransferredEventObject {
-  from: string;
-  to: string;
+export interface LogBytesEventObject {
+  data: string;
 }
-export type OwnershipTransferredEvent = TypedEvent<
-  [string, string],
-  OwnershipTransferredEventObject
->;
+export type LogBytesEvent = TypedEvent<[string], LogBytesEventObject>;
 
-export type OwnershipTransferredEventFilter =
-  TypedEventFilter<OwnershipTransferredEvent>;
+export type LogBytesEventFilter = TypedEventFilter<LogBytesEvent>;
 
-export interface CrossChainNameServiceRegister extends BaseContract {
+export interface Register extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: CrossChainNameServiceRegisterInterface;
+  interface: RegisterInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
@@ -165,10 +130,6 @@ export interface CrossChainNameServiceRegister extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    acceptOwnership(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     enableChain(
       chainSelector: PromiseOrValue<BigNumberish>,
       ccnsReceiverAddress: PromiseOrValue<string>,
@@ -179,8 +140,6 @@ export interface CrossChainNameServiceRegister extends BaseContract {
     i_lookup(overrides?: CallOverrides): Promise<[string]>;
 
     i_router(overrides?: CallOverrides): Promise<[string]>;
-
-    owner(overrides?: CallOverrides): Promise<[string]>;
 
     register(
       _name: PromiseOrValue<string>,
@@ -199,20 +158,11 @@ export interface CrossChainNameServiceRegister extends BaseContract {
       }
     >;
 
-    transferOwnership(
-      to: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     withdraw(
       beneficiary: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
   };
-
-  acceptOwnership(
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
 
   enableChain(
     chainSelector: PromiseOrValue<BigNumberish>,
@@ -224,8 +174,6 @@ export interface CrossChainNameServiceRegister extends BaseContract {
   i_lookup(overrides?: CallOverrides): Promise<string>;
 
   i_router(overrides?: CallOverrides): Promise<string>;
-
-  owner(overrides?: CallOverrides): Promise<string>;
 
   register(
     _name: PromiseOrValue<string>,
@@ -244,19 +192,12 @@ export interface CrossChainNameServiceRegister extends BaseContract {
     }
   >;
 
-  transferOwnership(
-    to: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
   withdraw(
     beneficiary: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   callStatic: {
-    acceptOwnership(overrides?: CallOverrides): Promise<void>;
-
     enableChain(
       chainSelector: PromiseOrValue<BigNumberish>,
       ccnsReceiverAddress: PromiseOrValue<string>,
@@ -267,8 +208,6 @@ export interface CrossChainNameServiceRegister extends BaseContract {
     i_lookup(overrides?: CallOverrides): Promise<string>;
 
     i_router(overrides?: CallOverrides): Promise<string>;
-
-    owner(overrides?: CallOverrides): Promise<string>;
 
     register(
       _name: PromiseOrValue<string>,
@@ -287,11 +226,6 @@ export interface CrossChainNameServiceRegister extends BaseContract {
       }
     >;
 
-    transferOwnership(
-      to: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     withdraw(
       beneficiary: PromiseOrValue<string>,
       overrides?: CallOverrides
@@ -299,30 +233,14 @@ export interface CrossChainNameServiceRegister extends BaseContract {
   };
 
   filters: {
-    "OwnershipTransferRequested(address,address)"(
-      from?: PromiseOrValue<string> | null,
-      to?: PromiseOrValue<string> | null
-    ): OwnershipTransferRequestedEventFilter;
-    OwnershipTransferRequested(
-      from?: PromiseOrValue<string> | null,
-      to?: PromiseOrValue<string> | null
-    ): OwnershipTransferRequestedEventFilter;
+    "Log(string)"(message?: null): LogEventFilter;
+    Log(message?: null): LogEventFilter;
 
-    "OwnershipTransferred(address,address)"(
-      from?: PromiseOrValue<string> | null,
-      to?: PromiseOrValue<string> | null
-    ): OwnershipTransferredEventFilter;
-    OwnershipTransferred(
-      from?: PromiseOrValue<string> | null,
-      to?: PromiseOrValue<string> | null
-    ): OwnershipTransferredEventFilter;
+    "LogBytes(bytes)"(data?: null): LogBytesEventFilter;
+    LogBytes(data?: null): LogBytesEventFilter;
   };
 
   estimateGas: {
-    acceptOwnership(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
     enableChain(
       chainSelector: PromiseOrValue<BigNumberish>,
       ccnsReceiverAddress: PromiseOrValue<string>,
@@ -334,8 +252,6 @@ export interface CrossChainNameServiceRegister extends BaseContract {
 
     i_router(overrides?: CallOverrides): Promise<BigNumber>;
 
-    owner(overrides?: CallOverrides): Promise<BigNumber>;
-
     register(
       _name: PromiseOrValue<string>,
       _address: PromiseOrValue<string>,
@@ -347,11 +263,6 @@ export interface CrossChainNameServiceRegister extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    transferOwnership(
-      to: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
     withdraw(
       beneficiary: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -359,10 +270,6 @@ export interface CrossChainNameServiceRegister extends BaseContract {
   };
 
   populateTransaction: {
-    acceptOwnership(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
     enableChain(
       chainSelector: PromiseOrValue<BigNumberish>,
       ccnsReceiverAddress: PromiseOrValue<string>,
@@ -374,8 +281,6 @@ export interface CrossChainNameServiceRegister extends BaseContract {
 
     i_router(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     register(
       _name: PromiseOrValue<string>,
       _address: PromiseOrValue<string>,
@@ -385,11 +290,6 @@ export interface CrossChainNameServiceRegister extends BaseContract {
     s_chains(
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    transferOwnership(
-      to: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     withdraw(

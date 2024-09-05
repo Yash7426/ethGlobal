@@ -32,3 +32,9 @@ export type { CrossChainNameServiceRegister } from "./contracts/CrossChainNameSe
 export { CrossChainNameServiceRegister__factory } from "./factories/contracts/CrossChainNameServiceRegister__factory";
 export type { ICrossChainNameServiceLookup } from "./contracts/ICrossChainNameServiceLookup";
 export { ICrossChainNameServiceLookup__factory } from "./factories/contracts/ICrossChainNameServiceLookup__factory";
+export type { Lookup } from "./contracts/Lookup";
+export { Lookup__factory } from "./factories/contracts/Lookup__factory";
+export type { Receiver } from "./contracts/Recieve.sol/Receiver";
+export { Receiver__factory } from "./factories/contracts/Recieve.sol/Receiver__factory";
+export type { Register } from "./contracts/Register";
+export { Register__factory } from "./factories/contracts/Register__factory";

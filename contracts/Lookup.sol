@@ -8,7 +8,7 @@ import {OwnerIsCreator} from "@chainlink/contracts-ccip/src/v0.8/shared/access/O
  * THIS IS AN EXAMPLE CONTRACT THAT USES UN-AUDITED CODE.
  * DO NOT USE THIS CODE IN PRODUCTION.
  */
-contract CrossChainNameServiceLookup is OwnerIsCreator {
+contract Lookup is OwnerIsCreator {
     mapping(string => address) public lookup;
 
     address internal s_crossChainNameService;

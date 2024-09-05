@@ -7,14 +7,12 @@ import {CCIPReceiver} from "@chainlink/contracts-ccip/src/v0.8/ccip/applications
 
 import {ICrossChainNameServiceLookup} from "./ICrossChainNameServiceLookup.sol";
 
-/*
+/**
  * THIS IS AN EXAMPLE CONTRACT THAT USES HARDCODED VALUES FOR CLARITY.
  * THIS IS AN EXAMPLE CONTRACT THAT USES UN-AUDITED CODE.
  * DO NOT USE THIS CODE IN PRODUCTION.
  */
- 
-contract CrossChainNameServiceReceiver is CCIPReceiver {
-
+contract Receiver is CCIPReceiver {
     IRouterClient public immutable i_router;
     ICrossChainNameServiceLookup public immutable i_lookup;
     uint64 public immutable i_sourceChainSelector;

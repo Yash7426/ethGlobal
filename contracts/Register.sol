@@ -12,8 +12,7 @@ import {ICrossChainNameServiceLookup} from "./ICrossChainNameServiceLookup.sol";
  * THIS IS AN EXAMPLE CONTRACT THAT USES UN-AUDITED CODE.
  * DO NOT USE THIS CODE IN PRODUCTION.
  */
-
-contract CrossChainNameServiceRegister is OwnerIsCreator {
+contract Register  {
     struct Chain {
         uint64 chainSelector;
         address ccnsReceiverAddress;
@@ -26,8 +25,6 @@ contract CrossChainNameServiceRegister is OwnerIsCreator {
     Chain[] public s_chains;
 
     error InvalidRouter(address router);
-    error CustomError(string  err);
-    error CustomBytes(bytes  err);
 
     modifier onlyRouter() {
         if (msg.sender != address(i_router)) revert InvalidRouter(msg.sender);
@@ -38,14 +35,14 @@ contract CrossChainNameServiceRegister is OwnerIsCreator {
         i_router = IRouterClient(router);
         i_lookup = ICrossChainNameServiceLookup(lookup);
     }
-    
+
     receive() external payable {}
 
     function enableChain(
         uint64 chainSelector,
         address ccnsReceiverAddress,
         uint256 gasLimit
-    ) external onlyOwner {
+    ) external  {
         s_chains.push(
             Chain({
                 chainSelector: chainSelector,
@@ -56,40 +53,55 @@ contract CrossChainNameServiceRegister is OwnerIsCreator {
     }
 
     // Assumes address(this) has sufficient native asset.
-    function register(string memory _name, address _address) external {
-        uint256 length = s_chains.length;
-        for (uint256 i; i < length; ) {
-            Chain memory currentChain = s_chains[i];
+event Log(string message);
+event LogBytes(bytes data);
 
-            Client.EVM2AnyMessage memory message = Client.EVM2AnyMessage({
-                receiver: abi.encode(currentChain.ccnsReceiverAddress),
-                data: abi.encode(_name, _address),
-                tokenAmounts: new Client.EVMTokenAmount[](0),
-                extraArgs: Client._argsToBytes(
-                    Client.EVMExtraArgsV1({gasLimit: currentChain.gasLimit})
-                ),
-                feeToken: address(0) 
-            });
+function register(string memory _name, address _address) external {
+    emit Log("Starting registration");
+    
+    uint256 length = s_chains.length;
+    require(length > 0, "No chains enabled");
 
-           try i_router.ccipSend{
-                value: i_router.getFee(currentChain.chainSelector, message)
-            }(currentChain.chainSelector, message) {
-             
-            } catch Error(string memory reason) {
-                revert CustomError(reason);
-            } catch (bytes memory reason) {
-                revert CustomBytes(reason);
-            }
+    for (uint256 i; i < length; ) {
+        Chain memory currentChain = s_chains[i];
+        
+        emit Log("Preparing message");
+        Client.EVM2AnyMessage memory message = Client.EVM2AnyMessage({
+            receiver: abi.encode(currentChain.ccnsReceiverAddress),
+            data: abi.encode(_name, _address),
+            tokenAmounts: new Client.EVMTokenAmount[](0) ,
+            extraArgs: Client._argsToBytes(
+                Client.EVMExtraArgsV1({gasLimit: 500000}) // Adjust gas limit as needed
+            ),
+            feeToken: address(0)
+        });
 
-            unchecked {
-                ++i;
-            }
+        uint256 fee = i_router.getFee(currentChain.chainSelector, message);
+        require(address(this).balance >= fee, "Insufficient funds for cross-chain fee");
+
+        emit Log("Sending message");
+
+        try i_router.ccipSend{value: fee}(currentChain.chainSelector, message) {
+            emit Log("Message sent successfully");
+        } catch Error(string memory reason) {
+            emit Log(string(abi.encodePacked("ccipSend failed: ", reason)));
+            revert(string(abi.encodePacked("CCIP Send failed: ", reason)));
+        } catch {
+            emit Log("ccipSend failed: Unknown error");
+            revert("CCIP Send failed: Unknown error");
         }
 
-        i_lookup.register(_name, _address);
+        unchecked {
+            ++i;
+        }
     }
 
-    function withdraw(address beneficiary) public onlyOwner {
+    emit Log("Calling register on lookup");
+    i_lookup.register(_name, _address);
+    emit Log("Registration completed");
+}
+
+    function withdraw(address beneficiary) public  {
         uint256 amount = address(this).balance;
         (bool sent, ) = beneficiary.call{value: amount}("");
         require(sent, "Failed to withdraw");

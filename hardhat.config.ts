@@ -69,12 +69,14 @@ const config: HardhatUserConfig = {
     bnbChainTestnet: {
       url: BNB_CHAIN_TESTNET_RPC_URL !== undefined ? BNB_CHAIN_TESTNET_RPC_URL : '',
       accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
-      chainId: 97
+      chainId: 97,
+      gasPrice: 30000000,
     },
     baseSepolia: {
       url: BASE_SEPOLIA_RPC_URL !== undefined ? BASE_SEPOLIA_RPC_URL : '',
       accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
-      chainId: 84532
+      chainId: 84532,
+      gasPrice: 300000000,
     },
     kromaSepolia: {
       url: KROMA_SEPOLIA_RPC_URL !== undefined ? KROMA_SEPOLIA_RPC_URL : '',

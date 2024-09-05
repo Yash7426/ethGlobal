@@ -1,0 +1,45 @@
+ℹ️  Attempting to deploy CrossChainNameServiceLookup on the ethereumSepolia blockchain using 0x7cdc16926167dE69523B07FCB6C9518d81010B09 address
+✅ CrossChainNameServiceLookup deployed at address 0x0E4730386A55E00304d4BA6Bc0B299Ebd7072A2C on ethereumSepolia blockchain 
+ℹ️  Attempting to deploy CrossChainNameServiceRegister on the ethereumSepolia blockchain using 0x7cdc16926167dE69523B07FCB6C9518d81010B09 address
+✅ CrossChainNameServiceRegister deployed at address 0x47f37D0724B38608Fc028ca608171e7A8638BCa7 on ethereumSepolia blockchain
+ℹ️  Attempting to call the setCrossChainNameServiceAddress function on the CrossChainNameServiceLookup smart contract
+✅ CCNS Address set, transaction hash: 0x462ced4b6353c6be6480dae79763b2d274712ea23b091e53827cc798a420a49a
+
+bnb 
+ℹ️  Attempting to deploy CrossChainNameServiceLookup on the baseSepolia blockchain using 0x7cdc16926167dE69523B07FCB6C9518d81010B09 address
+✅ CrossChainNameServiceLookup deployed at address 0x063714A6b84b4dCa24573547CB0CD13F78887db6 on baseSepolia blockchain
+ℹ️  Attempting to deploy CrossChainNameServiceReceiver on the baseSepolia blockchain
+✅ CrossChainNameServiceReceiver deployed at address 0x4813B724990719CAbED9C2ab0Cd159a4A13933ae on baseSepolia blockchain
+ℹ️  Attempting to call the setCrossChainNameServiceAddress function on the CrossChainNameServiceLookup smart contract
+✅ CCNS Address set, transaction hash: 0x05b574dc7a4c2226ebd1afa05fa326f3154e53f7174d9861ea62b7c7dcc2c2b2
+✅ Task deploy-destination-chain-step1 finished with the execution
+
+ℹ️  Attempting to call the enableChain function on the CrossChainNameServiceRegister smart contract on the ethereumSepolia blockchain
+✅ New Chain enabled, transaction hash: 0x370031825e2118f8966ff977fe5734a0ad4d62c7ceaae4f8403346a38f1c9287
+✅ Task deploy-destination-chain-step2 finished with the execution
+
+npx hardhat deploy-source-chain --router 0x0BF3dE8c5D3e8A2B34D2BEeB17ABfCeBaf363A59
+npx hardhat deploy-destination-chain-step1 --network baseSepolia --register 0x47f37D0724B38608Fc028ca608171e7A8638BCa7 --sourcechainselector 11155111 --router 0xD3b06cEbF099CE7DA4AcCf578aaebFDBd6e88a93
+npx hardhat deploy-destination-chain-step2 --receiver-network baseSepolia --register 0x47f37D0724B38608Fc028ca608171e7A8638BCa7 --receiver 0x4813B724990719CAbED9C2ab0Cd159a4A13933ae --destinationchainselector 84532
+npx hardhat ccns-register --ccns-name kash.ccns --register 0x47f37D0724B38608Fc028ca608171e7A8638BCa7 
+npx hardhat ccns-lookup --ccns-name onan.ccns --network ethereumSepolia
+
+ℹ️  Attempting to deploy CrossChainNameServiceLookup on the ethereumSepolia blockchain using 0x7cdc16926167dE69523B07FCB6C9518d81010B09 address
+✅ CrossChainNameServiceLookup deployed at address 0x654aa59DF70B1F62930D8C7780160110aaAfbBC4 on ethereumSepolia blockchain
+ℹ️  Attempting to deploy CrossChainNameServiceRegister on the ethereumSepolia blockchain using 0x7cdc16926167dE69523B07FCB6C9518d81010B09 address
+✅ CrossChainNameServiceRegister deployed at address 0xa1B83e30deA6b985cf92bB5321AE3f11F39A72A7 on ethereumSepolia blockchain
+ℹ️  Attempting to call the setCrossChainNameServiceAddress function on the CrossChainNameServiceLookup smart contract
+✅ CCNS Address set, transaction hash: 0x840ad4e1ea0c034a180f7f2fa586ec2e78869118d6ee0ee004695bb63ff48ec3
+✅ Task deploy-source-chain finished with the execution
+
+base 
+✅ CrossChainNameServiceLookup deployed at address 0x063714A6b84b4dCa24573547CB0CD13F78887db6 on baseSepolia blockchain
+✅ CrossChainNameServiceReceiver deployed at address 0x72A4C1D977e638c8648898406C585F81c6a93224 on baseSepolia blockchain
+
+npx hardhat deploy-source-chain --router 0x0BF3dE8c5D3e8A2B34D2BEeB17ABfCeBaf363A59
+npx hardhat deploy-destination-chain-step1 --network baseSepolia --register 0x798319f41B2F3770917f6Ebb70621195e06528aA --sourcechainselector 11155111 --router 0xD3b06cEbF099CE7DA4AcCf578aaebFDBd6e88a93
+npx hardhat deploy-destination-chain-step2 --receiver-network baseSepolia --register 0x262b98488bfeBa2954013507063191Af14C95b21 --receiver 0x72A4C1D977e638c8648898406C585F81c6a93224 --destinationchainselector 84532
+npx hardhat get-balance --register 0x262b98488bfeBa2954013507063191Af14C95b21
+npx hardhat fund --amount 100000000000000000 --register 0x262b98488bfeBa2954013507063191Af14C95b21
+npx hardhat ccns-register --ccns-name disha.ccns --register 0x262b98488bfeBa2954013507063191Af14C95b21
+npx hardhat ccns-lookup --ccns-name disha.ccns --network ethereumSepolia

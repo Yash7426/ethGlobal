@@ -2,7 +2,7 @@ import { task } from "hardhat/config";
 import { writeFileSync, mkdirSync, existsSync } from 'fs'
 import { join } from 'path';
 import { HardhatRuntimeEnvironment, TaskArguments } from "hardhat/types";
-import { CrossChainNameServiceLookup, CrossChainNameServiceLookup__factory, CrossChainNameServiceRegister, CrossChainNameServiceRegister__factory } from "../typechain-types";
+import { CrossChainNameServiceLookup__factory, CrossChainNameServiceRegister, CrossChainNameServiceRegister__factory, CrossChainNameServiceLookup, Lookup ,Lookup__factory, Register__factory, Register} from "../typechain-types";
 import { __deploymentsPath, getRouterConfig } from "./utils";
 import { Spinner } from '../utils/spinner'
 
@@ -23,6 +23,7 @@ task(`deploy-source-chain`, `Sets up the Cross Chain Name Service on the source 
         const ccnsLookupFactory: CrossChainNameServiceLookup__factory = await hre.ethers.getContractFactory('CrossChainNameServiceLookup');
         const ccnsLookup: CrossChainNameServiceLookup = await ccnsLookupFactory.deploy();
         await ccnsLookup.deployed();
+        // const ccnsLookup: Lookup = Lookup__factory.connect('0x654aa59DF70B1F62930D8C7780160110aaAfbBC4', deployer);
 
         spinner.stop();
         console.log(`✅ CrossChainNameServiceLookup deployed at address ${ccnsLookup.address} on ${hre.network.name} blockchain`);
@@ -35,6 +36,7 @@ task(`deploy-source-chain`, `Sets up the Cross Chain Name Service on the source 
         const ccnsRegisterFactory: CrossChainNameServiceRegister__factory = await hre.ethers.getContractFactory('CrossChainNameServiceRegister');
         const ccnsRegister: CrossChainNameServiceRegister = await ccnsRegisterFactory.deploy(routerAddress, ccnsLookup.address);
         await ccnsRegister.deployed();
+        // const ccnsRegister: Register = Register__factory.connect('0xa1B83e30deA6b985cf92bB5321AE3f11F39A72A7', deployer);
 
         spinner.stop();
         console.log(`✅ CrossChainNameServiceRegister deployed at address ${ccnsRegister.address} on ${hre.network.name} blockchain`);

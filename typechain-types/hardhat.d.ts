@@ -64,6 +64,18 @@ declare module "hardhat/types/runtime" {
       name: "ICrossChainNameServiceLookup",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ICrossChainNameServiceLookup__factory>;
+    getContractFactory(
+      name: "Lookup",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Lookup__factory>;
+    getContractFactory(
+      name: "Receiver",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Receiver__factory>;
+    getContractFactory(
+      name: "Register",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Register__factory>;
 
     getContractAt(
       name: "CCIPReceiver",
@@ -130,6 +142,21 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.ICrossChainNameServiceLookup>;
+    getContractAt(
+      name: "Lookup",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Lookup>;
+    getContractAt(
+      name: "Receiver",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Receiver>;
+    getContractAt(
+      name: "Register",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Register>;
 
     // default types
     getContractFactory(
