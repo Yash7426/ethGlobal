@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import local from "next/font/local";
 import "./globals.css";
+import UserProvider from "@/contexts/Usercontext";
 
 const primaryFont = local({
   src: "../assets/primary.ttf",
@@ -22,7 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={primaryFont.variable}>{children}</body>
+      <UserProvider>
+        <body className={primaryFont.variable}>{children}</body>
+      </UserProvider>
     </html>
   );
 }

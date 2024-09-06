@@ -1,10 +1,7 @@
 "use client";
 import React from "react";
 import Navbar from "@/components/Navbar";
-import {
-  domAnimation,
-  LazyMotion,
-} from "framer-motion";
+import { domAnimation, LazyMotion } from "framer-motion";
 import { FeaturesSectionDemo } from "../components/dashboard/Grid";
 import AccordionComponent from "../components/dashboard/AccordionComponent";
 import BarChart from "@/components/chart";
@@ -13,11 +10,10 @@ const page = () => {
   return (
     <LazyMotion features={domAnimation}>
       <Navbar />
-      <div className="mt-20 max-w-6xl mx-auto flex items-center justify-center flex-wrap">
-        <AccordionComponent/>
-        {/* <AccordionComponent/> */}
-        <div className="md:w-[58%] w-full">
-        <BarChart/>
+      <div className="mt-20 max-w-6xl mx-auto flex items-start justify-center flex-wrap">
+        <AccordionComponent />
+        <div className="md:w-[58%] w-full mb-10 mt-6 sm:mb-16 sm:mt-10 mx-auto">
+          <BarChart />
         </div>
       </div>
     </LazyMotion>

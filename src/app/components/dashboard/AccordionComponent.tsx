@@ -1,5 +1,5 @@
 import React from "react";
-import { CircleX } from 'lucide-react';
+import { CircleX } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -21,6 +21,7 @@ interface Wallet {
   icon: string;
   name: string;
 }
+
 const cryptoWallets: Wallet[] = [
   {
     icon: "https://freelogopng.com/images/all_img/1683021055metamask-icon.png",
@@ -73,7 +74,6 @@ const AccordionComponent = () => {
             return (
               <AccordionItem
                 className="dark:bg-black bg-white rounded-3xl px-4 shadow-xl border border-neutral-200 dark:border-white/[0.1]  shadow-black/[0.5] dark:shadow-white/[0.05] flex flex-col justify-center"
-                // className="border-2 border-[#CDD6DD] bg-[#F9FAFC] px-2 py-1 rounded-xl"
                 value={wallet.name}
               >
                 <AccordionTrigger className="break-words text-left">
@@ -97,7 +97,13 @@ const AccordionComponent = () => {
                         <div className="text-teal-50 ">
                           {item.slice(0, 30)}...
                         </div>
-                        <CircleX className=" cursor-pointer h-4 w-4 shrink-0 transition-transform duration-200" color="#ff0000" onClick={()=>{deleteAccount(item)}}/>
+                        <CircleX
+                          className=" cursor-pointer h-4 w-4 shrink-0 transition-transform duration-200"
+                          color="#ff0000"
+                          onClick={() => {
+                            deleteAccount(item);
+                          }}
+                        />
                       </div>
                     );
                   })}

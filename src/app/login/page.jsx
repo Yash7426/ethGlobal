@@ -54,6 +54,35 @@ export const blurOutFadeIn = {
   },
 };
 
+//    code for logging the user and saving context
+//    const pathname = usePathname();
+//    const { username, userId, setUsername, setUserId } = useUser();
+//    const router = useRouter();
+//    const connectWallet = async () => {
+//        if (localStorage.getItem("user")) {
+//            const userData = JSON.parse(localStorage.getItem("user")!);
+//            setUsername(userData.address);
+//            setUserId(userData._id);
+//            router.push("/chat");
+//            return;
+//        }
+//        // @ts-ignore
+//        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+//        // Assuming there's at least one account, get the first one
+//        const address = accounts[0];
+//        const response = await axios.post(
+//            process.env.NEXT_PUBLIC_BASE_URL + "user/add",
+//            {
+//                address,
+//            }
+//        );
+//        console.log(response)
+//        setUserId(response.data._id);
+//        setUsername(address as string);
+//        localStorage.setItem("user", JSON.stringify(response.data));
+//        // router.push("/chat");
+//    };
+
 const page = () => {
   return (
     <LazyMotion features={domAnimation}>

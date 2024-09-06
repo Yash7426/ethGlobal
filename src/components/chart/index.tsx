@@ -32,14 +32,13 @@ export const options = {
       text: "Your progress",
       color: "#FFF",
     },
-    scales: {},
   },
   scales: {
     y: {
       title: {
         display: true,
         color: "#FFF",
-        text: "No of Tasks Completed", // Name of x-axis
+        text: "Tasks Completed",
       },
       ticks: { color: "#fff", beginAtZero: true },
     },
@@ -47,23 +46,33 @@ export const options = {
       title: {
         display: true,
         color: "#FFF",
-        text: "Protocols", // Name of x-axis
+        text: "Protocols",
       },
-      ticks: { color: "#fff", beginAtZero: true },
+      stacked:true,
+      ticks: { color: "#FFF", beginAtZero: true },
     },
   },
 };
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
+const labels = ["MetaMask", "Solana", "Mantle", "Base"];
 export const data = {
   labels,
   datasets: [
     {
-      label: "Tasks",
+      label: "Tasks Completed",
       data: labels.map(() => faker.datatype.number({ min: 0, max: 10 })),
       borderColor: "#0000aa",
       backgroundColor: "#000033",
-      borderWidth: 2,
+      borderWidth: 1,
+      borderRadius: 6,
+      borderSkipped: false,
+    },
+    {
+      label: "Total tasks",
+      data: [10,10,10,10],
+      borderColor: "#00aaaa",
+      backgroundColor: "#00aa33",
+      borderWidth: 1,
       borderRadius: 6,
       borderSkipped: false,
     },
