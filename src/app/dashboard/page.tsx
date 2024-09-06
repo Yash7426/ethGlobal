@@ -5,6 +5,7 @@ import { domAnimation, LazyMotion } from "framer-motion";
 import { FeaturesSectionDemo } from "../components/dashboard/Grid";
 import AccordionComponent from "../components/dashboard/AccordionComponent";
 import BarChart from "@/components/chart";
+import AccordionComp2 from "../components/dashboard/AccordionComp2";
 
 const page = () => {
   return (
@@ -16,6 +17,7 @@ const page = () => {
           <BarChart />
         </div>
       </div>
+      <AccordionComp2 />
     </LazyMotion>
   );
 };

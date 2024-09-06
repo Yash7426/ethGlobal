@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import local from "next/font/local";
 import "./globals.css";
 import UserProvider from "@/contexts/Usercontext";
