@@ -64,6 +64,7 @@ const Home: React.FC = () => {
             color: "#fff",
           },
         });
+        console.log(data.imgUrl);
         setUploadResult(data.imgUrl);
         // route here
       } else {
@@ -81,16 +82,13 @@ const Home: React.FC = () => {
     }
   };
 
-
   if (!isClient) return null;
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen space-y-4">
-      <h1 className="text-2xl font-bold">Capture and Upload Image</h1>
-
-      <video ref={videoRef} autoPlay className="border" />
-      <canvas ref={canvasRef} className="hidden" width={640} height={480} />
-
+    <div className="flex flex-col items-center justify-center space-y-4">
+      <h1 className="text-2xl font-bold text-gray-300 py-2">Capture and Upload Image</h1>
+      <video ref={videoRef} autoPlay className="w-[520px] h-[380px]" />
+      <canvas ref={canvasRef} className="hidden" width={520} height={380} />
       {imgSrc && <img src={imgSrc} alt="Captured" className="border" />}
 
       <div className="flex space-x-4">
@@ -114,15 +112,6 @@ const Home: React.FC = () => {
           {uploading ? "Uploading..." : "Upload to Cloudinary"}
         </button>
       </div>
-
-      {uploadResult && (
-        <div>
-          <p>Upload Result:</p>
-          <a href={uploadResult} target="_blank" rel="noopener noreferrer">
-            {uploadResult}
-          </a>
-        </div>
-      )}
     </div>
   );
 };

@@ -9,9 +9,7 @@ import {
 import Image from "next/image";
 import ProgressDemo from "./Progressbar";
 import { cn } from "@/lib/utils";
-import {
-  IconTerminal2,
-} from "@tabler/icons-react";
+import { IconTerminal2 } from "@tabler/icons-react";
 import { CardSpotlight } from "./card-spotlight";
 
 type Task = {
@@ -199,7 +197,7 @@ const AccordionComp2 = () => {
     <div className="flex w-full max-w-6xl flex-col gap-y-3 sm:gap-y-4 md:gap-y-5 mx-auto">
       {/* rounded-2xl bg-gradient-to-bl from-[#AB57FF] via-[#7180FE] to-[#2ED5F6] */}
       <div className="w-full h-full p-4 bg-black rounded-2xl">
-      <h1 className="mb-10 font-primary-font text-center text-8xl sm:text-6xl md:text-8xl mx-auto w-full inline-block text-gray-300 mt-1 mb">
+        <h1 className="mb-10 font-primary-font text-center text-8xl sm:text-6xl md:text-8xl mx-auto w-full inline-block text-gray-300 mt-1 mb">
           Protocols
         </h1>
         <Accordion

@@ -1,69 +1,160 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   validateCaptcha,
   // @ts-ignore
 } from "react-simple-captcha";
-import { Input } from "../ui/input";
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalTrigger,
+} from "@/components/Modal";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
-const CaptchaTest: React.FC = () => {
+interface ModalProps {
+  displayText?: string;
+  heading?: string;
+  subheading?: string;
+  title?: string;
+  buttonText?: string;
+  callback?: () => void;
+}
+
+const CaptchaTest: React.FC<ModalProps> = ({
+  displayText,
+  heading,
+  subheading,
+  title,
+  buttonText,
+  callback,
+}) => {
+  const [userCaptcha, setUserCaptcha] = useState("");
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [captchaError, setCaptchaError] = useState(false);
+
   useEffect(() => {
-    loadCaptchaEnginge(8);
+    loadCaptchaEnginge(8); // Load the captcha engine with 8 characters
   }, []);
 
-  const doSubmit = () => {
-    const userCaptcha = (
-      document.getElementById("user_captcha_input") as HTMLInputElement
-    ).value;
-
+  const handleSubmit = () => {
     if (validateCaptcha(userCaptcha)) {
-      alert("Captcha Matched");
-      loadCaptchaEnginge(8);
-      (
-        document.getElementById("user_captcha_input") as HTMLInputElement
-      ).value = "";
+      // do your stuff
+      loadCaptchaEnginge(8); // Reload the captcha after successful match
+      resetForm();
     } else {
-      alert("Captcha Does Not Match");
-      (
-        document.getElementById("user_captcha_input") as HTMLInputElement
-      ).value = "";
+      setCaptchaError(true);
     }
   };
 
+  const resetForm = () => {
+    setUserCaptcha("");
+    setName("");
+    setMessage("");
+    setCaptchaError(false);
+  };
+
   return (
-    <div className="flex justify-center items-center z-50">
-      <div className="w-full max-w-sm">
-        <div className="flex flex-col items-center space-y-4">
-          <div className="mt-3">
-            <LoadCanvasTemplate
-              reloadText="Reload Captcha"
-              reloadColor="#593de6"
-            />
+    <div className="py-40  flex items-center justify-center">
+      <Modal>
+        <ModalTrigger className="bg-black dark:bg-white dark:text-black text-white flex justify-center group/modal-btn">
+          <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
+            {displayText}
+          </span>
+          <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
+            ✈️
           </div>
+        </ModalTrigger>
+        <ModalBody>
+          <ModalContent>
+            <div className="flex justify-center items-center z-50">
+              <div className="w-full max-w-sm">
+                <div className="flex flex-col items-center space-y-4">
+                  <div className="mt-3">
+                    <LoadCanvasTemplate reloadText=" " reloadColor="#593de6" />
+                  </div>
 
-          <div className="mt-3 w-full">
-            <Input
-              name="user_captcha_input"
-              id="user_captcha_input"
-              placeholder="Enter Captcha"
-              type="text"
-            />
-          </div>
+                  <div className="mt-3 w-full">
+                    <Input
+                      name="name"
+                      id="name"
+                      placeholder="Enter Name"
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
 
-          <div className="mt-3">
-            <button
-              className={
-                "bg-gradient-to-bl from-[#593de6] via-[#392d82] to-[#593de6]  hover:bg-gradient-to-bl hover:from-[#221a4c] hover:via-[#593de6] hover:to-[#221a4c] transition-all duration-300 ease-in-out  flex flex-row  mx-auto py-[10px] px-5 rounded-full items-center justify-center cursor-pointer text-white mt-auto"
-              }
-              onClick={doSubmit}
-            >
-              Submit
-            </button>
-          </div>
-        </div>
-      </div>
+                  <div className="mt-3 w-full">
+                    <Input
+                      name="message"
+                      id="message"
+                      placeholder="Enter Message"
+                      type="text"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="mt-3 w-full">
+                    <Input
+                      name="user_captcha_input"
+                      id="user_captcha_input"
+                      placeholder="Enter Captcha"
+                      type="text"
+                      value={userCaptcha}
+                      onChange={(e) => setUserCaptcha(e.target.value)}
+                    />
+                  </div>
+
+                  {captchaError && (
+                    <div className="text-red-500">Captcha Does Not Match</div>
+                  )}
+
+                  <div className="mt-3">
+                    <button
+                      className={
+                        "bg-gradient-to-bl from-[#593de6] via-[#392d82] to-[#593de6]  hover:bg-gradient-to-bl hover:from-[#221a4c] hover:via-[#593de6] hover:to-[#221a4c] transition-all duration-300 ease-in-out  flex flex-row  mx-auto py-[10px] px-5 rounded-full items-center justify-center cursor-pointer text-white mt-auto"
+                      }
+                      onClick={handleSubmit}
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ModalContent>
+        </ModalBody>
+      </Modal>
+    </div>
+  );
+};
+
+const BottomGradient = () => {
+  return (
+    <>
+      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+      <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+    </>
+  );
+};
+
+const LabelInputContainer = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <div className={cn("flex flex-col space-y-2 w-full", className)}>
+      {children}
     </div>
   );
 };

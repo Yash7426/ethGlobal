@@ -2,7 +2,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {ConnectWallet} from '@thirdweb-dev/react'
 import {
   cubicBezier,
   domAnimation,
@@ -13,6 +12,7 @@ import {
 } from "framer-motion";
 import { anim } from "@/lib/utils";
 import { ConnectWallet } from "@thirdweb-dev/react";
+import CaptchaTest from "@/components/captcha";
 export const slideUpOpacity = {
   initial: {
     y: 40,
