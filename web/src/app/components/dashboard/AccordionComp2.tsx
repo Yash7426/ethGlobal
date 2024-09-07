@@ -184,7 +184,7 @@ const Feature = ({
             // call cta here
           }}
           className={
-            "bg-gradient-to-bl from-[#AB57FF] via-[#7180FE] to-[#2ED5F6] flex flex-row w-[90%] sm:w-[80%] mx-auto py-[6px] px-5 rounded-full items-center justify-center cursor-pointer text-white mt-auto"
+            "bg-gradient-to-bl from-[#593de6] via-[#392d82] to-[#593de6]  hover:bg-gradient-to-bl hover:from-[#221a4c] hover:via-[#593de6] hover:to-[#221a4c] transition-all duration-300 ease-in-out  flex flex-row  sm:w-[60%] mx-auto py-[10px] px-5 rounded-full items-center justify-center cursor-pointer text-white mt-auto"
           }
         >
           Cta text
@@ -199,9 +199,12 @@ const AccordionComp2 = () => {
     <div className="flex w-full max-w-6xl flex-col gap-y-3 sm:gap-y-4 md:gap-y-5 mx-auto">
       {/* rounded-2xl bg-gradient-to-bl from-[#AB57FF] via-[#7180FE] to-[#2ED5F6] */}
       <div className="w-full h-full p-4 bg-black rounded-2xl">
-        <p className="font-[700] text-center text-3xl sm:text-4xl md:text-5xl mx-auto w-full inline-block text-transparent bg-clip-text bg-gradient-to-bl from-[#AB57FF] via-[#7180FE] via-48% to-[#2ED5F6] mt-1 mb-6">
+        {/* <p className="font-[700] text-center text-3xl sm:text-4xl md:text-5xl mx-auto w-full inline-block text-transparent bg-clip-text bg-gradient-to-bl from-[#AB57FF] via-[#7180FE] via-48% to-[#2ED5F6] mt-1 mb-6">
           Protocols
-        </p>
+        </p> */}
+        <h1 className="mb-10 font-primary-font text-center text-8xl sm:text-6xl md:text-8xl mx-auto w-full inline-block text-gray-300 mt-1 mb">
+          Protocols
+        </h1>
         <Accordion
           type="single"
           collapsible={true}
@@ -210,7 +213,7 @@ const AccordionComp2 = () => {
           {blockchainProtocols.map((protocol, ind) => {
             return (
               <AccordionItem
-                className="dark:bg-black bg-white rounded-2xl shadow-xl border border-neutral-200 dark:border-white/[0.1]  shadow-black/[0.5] dark:shadow-white/[0.05] flex flex-col justify-center px-1"
+                className="dark:bg-black bg-white rounded-2xl shadow-xl border border-neutral-200 dark:border-white/[0.1]  flex flex-col justify-center px-1"
                 value={protocol.name}
               >
                 <AccordionTrigger className="relative break-words text-left">
@@ -224,10 +227,10 @@ const AccordionComp2 = () => {
                       className="rounded-full w-8 h-8 sm:w-12 sm:h-12"
                     />
                     <div className="flex flex-col gap-y-1">
-                      <p className="uppercase font-[900] text-lg sm:text-xl text-[#4C1D95]">
+                      <p className="uppercase font-[900] text-lg sm:text-xl font-primary-font text-gray-200">
                         {protocol.name}
                       </p>
-                      <p className="text-teal-50 text-xs">
+                      <p className="text-gray-300 text-xs">
                         {protocol.description}
                       </p>
                     </div>
