@@ -1,0 +1,191 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/home/dishad/Desktop/BLOCKCHAIN/EthGlobal/sign_protocol/backend/contracts/WhitelistHook.sol": {
+      "lastModificationDate": 1725660360752,
+      "contentHash": "65d9292fb24175a26d23f4dc69335034",
+      "sourceName": "contracts/WhitelistHook.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./WhitelistMananger.sol",
+        "@openzeppelin/contracts/interfaces/IERC20.sol",
+        "@ethsign/sign-protocol-evm/src/interfaces/ISPHook.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "WhitelistHook"
+      ]
+    },
+    "/home/dishad/Desktop/BLOCKCHAIN/EthGlobal/sign_protocol/backend/contracts/WhitelistMananger.sol": {
+      "lastModificationDate": 1725626762651,
+      "contentHash": "f360ab35fef55a138ab1c04029bfa066",
+      "sourceName": "contracts/WhitelistMananger.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "WhitelistMananger"
+      ]
+    },
+    "/home/dishad/Desktop/BLOCKCHAIN/EthGlobal/sign_protocol/backend/node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": {
+      "lastModificationDate": 1725626505814,
+      "contentHash": "79af12d64eacc7d77b9ee2ac4b4d51ee",
+      "sourceName": "@openzeppelin/contracts/interfaces/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../token/ERC20/IERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": []
+    },
+    "/home/dishad/Desktop/BLOCKCHAIN/EthGlobal/sign_protocol/backend/node_modules/@ethsign/sign-protocol-evm/src/interfaces/ISPHook.sol": {
+      "lastModificationDate": 1725626506876,
+      "contentHash": "38882cde1696aec691c3c373a1afdc6b",
+      "sourceName": "@ethsign/sign-protocol-evm/src/interfaces/ISPHook.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "ISPHook"
+      ]
+    },
+    "/home/dishad/Desktop/BLOCKCHAIN/EthGlobal/sign_protocol/backend/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1725626505814,
+      "contentHash": "5517c8678c18eb1a8ba58810e7ca39ca",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    }
+  }
+}
