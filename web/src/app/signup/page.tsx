@@ -51,7 +51,7 @@ export const blurOutFadeIn = {
   },
 };
 
-const Page = () => {
+const page = () => {
   const router = useRouter();
   const [user, setUser] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false); // Add state to track submission
@@ -232,4 +232,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default page;
