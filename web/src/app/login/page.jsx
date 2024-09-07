@@ -109,7 +109,7 @@ const page = () => {
           </div>
 
           <m.div className="space-y-4">
-            <m.button
+            {/* <m.button
               {...anim(slideUpOpacity)}
               className="w-full px-4 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
             >
@@ -156,7 +156,9 @@ const page = () => {
                 className=""
               />
               Continue with solana
-            </m.button>
+            </m.button> */}
+                <ConnectWallet></ConnectWallet>
+
           </m.div>
         </div>
       </m.section>
