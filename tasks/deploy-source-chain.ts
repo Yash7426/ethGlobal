@@ -2,7 +2,7 @@ import { task } from "hardhat/config";
 import { writeFileSync, mkdirSync, existsSync } from 'fs'
 import { join } from 'path';
 import { HardhatRuntimeEnvironment, TaskArguments } from "hardhat/types";
-import { CrossChainNameServiceLookup__factory, CrossChainNameServiceRegister, CrossChainNameServiceRegister__factory, CrossChainNameServiceLookup, Lookup ,Lookup__factory, Register__factory, Register} from "../typechain-types";
+import { CrossChainNameServiceLookup__factory, CrossChainNameServiceRegister, CrossChainNameServiceRegister__factory, CrossChainNameServiceLookup} from "../typechain-types";
 import { __deploymentsPath, getRouterConfig } from "./utils";
 import { Spinner } from '../utils/spinner'
 

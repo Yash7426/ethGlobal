@@ -4,9 +4,10 @@
 
 import { ethers } from "ethers";
 import {
+  DeployContractOptions,
   FactoryOptions,
   HardhatEthersHelpers as HardhatEthersHelpersBase,
-} from "@nomiclabs/hardhat-ethers/types";
+} from "@nomicfoundation/hardhat-ethers/types";
 
 import * as Contracts from ".";
 
@@ -64,99 +65,191 @@ declare module "hardhat/types/runtime" {
       name: "ICrossChainNameServiceLookup",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ICrossChainNameServiceLookup__factory>;
-    getContractFactory(
-      name: "Lookup",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Lookup__factory>;
-    getContractFactory(
-      name: "Receiver",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Receiver__factory>;
-    getContractFactory(
-      name: "Register",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Register__factory>;
 
     getContractAt(
       name: "CCIPReceiver",
-      address: string,
+      address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.CCIPReceiver>;
     getContractAt(
       name: "IAny2EVMMessageReceiver",
-      address: string,
+      address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.IAny2EVMMessageReceiver>;
     getContractAt(
       name: "IRouterClient",
-      address: string,
+      address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.IRouterClient>;
     getContractAt(
       name: "Client",
-      address: string,
+      address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.Client>;
     getContractAt(
       name: "ConfirmedOwner",
-      address: string,
+      address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.ConfirmedOwner>;
     getContractAt(
       name: "ConfirmedOwnerWithProposal",
-      address: string,
+      address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.ConfirmedOwnerWithProposal>;
     getContractAt(
       name: "OwnerIsCreator",
-      address: string,
+      address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.OwnerIsCreator>;
     getContractAt(
       name: "IOwnable",
-      address: string,
+      address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.IOwnable>;
     getContractAt(
       name: "IERC165",
-      address: string,
+      address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.IERC165>;
     getContractAt(
       name: "CrossChainNameServiceLookup",
-      address: string,
+      address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.CrossChainNameServiceLookup>;
     getContractAt(
       name: "CrossChainNameServiceReceiver",
-      address: string,
+      address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.CrossChainNameServiceReceiver>;
     getContractAt(
       name: "CrossChainNameServiceRegister",
-      address: string,
+      address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.CrossChainNameServiceRegister>;
     getContractAt(
       name: "ICrossChainNameServiceLookup",
-      address: string,
+      address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.ICrossChainNameServiceLookup>;
-    getContractAt(
-      name: "Lookup",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.Lookup>;
-    getContractAt(
-      name: "Receiver",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.Receiver>;
-    getContractAt(
-      name: "Register",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.Register>;
+
+    deployContract(
+      name: "CCIPReceiver",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.CCIPReceiver>;
+    deployContract(
+      name: "IAny2EVMMessageReceiver",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IAny2EVMMessageReceiver>;
+    deployContract(
+      name: "IRouterClient",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IRouterClient>;
+    deployContract(
+      name: "Client",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Client>;
+    deployContract(
+      name: "ConfirmedOwner",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ConfirmedOwner>;
+    deployContract(
+      name: "ConfirmedOwnerWithProposal",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ConfirmedOwnerWithProposal>;
+    deployContract(
+      name: "OwnerIsCreator",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.OwnerIsCreator>;
+    deployContract(
+      name: "IOwnable",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IOwnable>;
+    deployContract(
+      name: "IERC165",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IERC165>;
+    deployContract(
+      name: "CrossChainNameServiceLookup",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.CrossChainNameServiceLookup>;
+    deployContract(
+      name: "CrossChainNameServiceReceiver",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.CrossChainNameServiceReceiver>;
+    deployContract(
+      name: "CrossChainNameServiceRegister",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.CrossChainNameServiceRegister>;
+    deployContract(
+      name: "ICrossChainNameServiceLookup",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ICrossChainNameServiceLookup>;
+
+    deployContract(
+      name: "CCIPReceiver",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.CCIPReceiver>;
+    deployContract(
+      name: "IAny2EVMMessageReceiver",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IAny2EVMMessageReceiver>;
+    deployContract(
+      name: "IRouterClient",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IRouterClient>;
+    deployContract(
+      name: "Client",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Client>;
+    deployContract(
+      name: "ConfirmedOwner",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ConfirmedOwner>;
+    deployContract(
+      name: "ConfirmedOwnerWithProposal",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ConfirmedOwnerWithProposal>;
+    deployContract(
+      name: "OwnerIsCreator",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.OwnerIsCreator>;
+    deployContract(
+      name: "IOwnable",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IOwnable>;
+    deployContract(
+      name: "IERC165",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IERC165>;
+    deployContract(
+      name: "CrossChainNameServiceLookup",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.CrossChainNameServiceLookup>;
+    deployContract(
+      name: "CrossChainNameServiceReceiver",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.CrossChainNameServiceReceiver>;
+    deployContract(
+      name: "CrossChainNameServiceRegister",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.CrossChainNameServiceRegister>;
+    deployContract(
+      name: "ICrossChainNameServiceLookup",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ICrossChainNameServiceLookup>;
 
     // default types
     getContractFactory(
@@ -165,13 +258,22 @@ declare module "hardhat/types/runtime" {
     ): Promise<ethers.ContractFactory>;
     getContractFactory(
       abi: any[],
-      bytecode: ethers.utils.BytesLike,
+      bytecode: ethers.BytesLike,
       signer?: ethers.Signer
     ): Promise<ethers.ContractFactory>;
     getContractAt(
       nameOrAbi: string | any[],
-      address: string,
+      address: string | ethers.Addressable,
       signer?: ethers.Signer
+    ): Promise<ethers.Contract>;
+    deployContract(
+      name: string,
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<ethers.Contract>;
+    deployContract(
+      name: string,
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<ethers.Contract>;
   }
 }

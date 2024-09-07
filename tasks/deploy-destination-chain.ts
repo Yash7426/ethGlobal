@@ -2,7 +2,7 @@ import { task } from "hardhat/config";
 import { writeFileSync, mkdirSync, existsSync } from 'fs'
 import { join } from 'path';
 import { HardhatRuntimeEnvironment, TaskArguments } from "hardhat/types";
-import { CrossChainNameServiceLookup, CrossChainNameServiceLookup__factory, CrossChainNameServiceReceiver, CrossChainNameServiceReceiver__factory, CrossChainNameServiceRegister, CrossChainNameServiceRegister__factory, Lookup, Lookup__factory, Receiver, Receiver__factory, Register ,Register__factory} from "../typechain-types";
+import { CrossChainNameServiceLookup, CrossChainNameServiceLookup__factory, CrossChainNameServiceReceiver, CrossChainNameServiceReceiver__factory, CrossChainNameServiceRegister, CrossChainNameServiceRegister__factory} from "../typechain-types";
 import { __deploymentsPath, getDeploymentInfo, getRouterConfig } from "./utils";
 import { Spinner } from '../utils/spinner'
 
@@ -70,7 +70,7 @@ task(`deploy-destination-chain-step1`, `Sets up the Cross Chain Name Service on 
 //   const ccnsReceiver: Receiver = Receiver__factory.connect('0x72A4C1D977e638c8648898406C585F81c6a93224',deployer);
         console.log(`ℹ️  Attempting to call the setCrossChainNameServiceAddress function on the CrossChainNameServiceLookup smart contract`);
         spinner.start();
-        console.log("yes")
+
         try{
         const tx = await ccnsLookup.setCrossChainNameServiceAddress(ccnsReceiver.address);
         await tx.wait();

@@ -15,10 +15,10 @@ task(`ccns-lookup`, `Register new .ccns name`)
             console.error(`❌ CrossChainNameServiceLookup address is undefined. Try to provide the address of a CrossChainNameServiceLookup smart contract via --lookup flag.`);
             return 1;
         }
-        console.log(hre.network.name + ' '+ hre.ethers.provider)
+        console.log(hre.network.name)
         const ccnsLookup: Lookup = Lookup__factory.connect('0x4b6685858179c62b10B1c522803ab9aDC7547EDB', hre.ethers.provider);
         console.log(ccnsLookup.address)
         const address = await ccnsLookup.lookup(taskArguments.ccnsName);
-
+        
         console.log(`ℹ️  ${taskArguments.ccnsName} resolved with ${address}`);
     })

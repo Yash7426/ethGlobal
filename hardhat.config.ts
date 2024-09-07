@@ -76,7 +76,6 @@ const config: HardhatUserConfig = {
       url: BASE_SEPOLIA_RPC_URL !== undefined ? BASE_SEPOLIA_RPC_URL : '',
       accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
       chainId: 84532,
-      gasPrice: 300000000,
     },
     kromaSepolia: {
       url: KROMA_SEPOLIA_RPC_URL !== undefined ? KROMA_SEPOLIA_RPC_URL : '',
