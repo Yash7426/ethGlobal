@@ -30,56 +30,80 @@ export const options = {
     title: {
       display: true,
       text: "Your progress",
-      color: "#FFF",
-    },
+      color: "#e5e7eb",
+      font: {
+        family: "Satoshi",
+        size: 30,
+        weight: "bold",
+      },
+    }
   },
   scales: {
     y: {
       title: {
         display: true,
-        color: "#FFF",
+        color: "#e5e7eb",
         text: "Tasks Completed",
+        font: {
+          family: "Satoshi",
+          size: 20,
+          weight: "bold",
+        },
       },
-      ticks: { color: "#fff", beginAtZero: true },
+      ticks: { color: "#fff", beginAtZero: true,font: {
+        family: "Satoshi",
+        size: 15,
+        weight: "bold",
+      }, },
     },
     x: {
       title: {
         display: true,
-        color: "#FFF",
+        color: "#e5e7eb",
         text: "Protocols",
+        font: {
+          family: "Satoshi",
+          size: 20,
+          weight: "bold",
+        },
       },
       stacked:true,
-      ticks: { color: "#FFF", beginAtZero: true },
+      ticks: { color: "#FFF", beginAtZero: true ,font: {
+        family: "Satoshi",
+        size: 15,
+        weight: "bold",
+      },},
     },
   },
 };
 
-const labels = ["MetaMask", "Solana", "Mantle", "Base"];
+const labels = ["MetaMask", "Solana", "Mantle", "Base","MetaMask", "Solana", "Mantle", "Base"];
 export const data = {
   labels,
   datasets: [
     {
       label: "Tasks Completed",
       data: labels.map(() => faker.datatype.number({ min: 0, max: 10 })),
-      borderColor: "#0000aa",
-      backgroundColor: "#000033",
+      borderColor: "#593de6",
+      backgroundColor: "#6e61f3",
       borderWidth: 1,
-      borderRadius: 6,
+      borderRadius: 10,
       borderSkipped: false,
     },
     {
       label: "Total tasks",
-      data: [10,10,10,10],
-      borderColor: "#00aaaa",
-      backgroundColor: "#00aa33",
+      data: [10, 10, 10, 10,10,10,10,10],
+      borderColor: "#8280f9",
+      backgroundColor: "#a4a9fd",
       borderWidth: 1,
-      borderRadius: 6,
+      borderRadius: 10,
       borderSkipped: false,
     },
   ],
 };
 
 const BarChart = () => {
+  // @ts-ignore
   return <Bar options={options} data={data} />;
 };
 

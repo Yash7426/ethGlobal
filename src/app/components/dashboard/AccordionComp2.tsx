@@ -7,17 +7,9 @@ import {
   AccordionTrigger,
 } from "@/app/components/dashboard/Accordion";
 import Image from "next/image";
-import { IconProtocol } from "@tabler/icons-react";
 import ProgressDemo from "./Progressbar";
 import { cn } from "@/lib/utils";
 import {
-  IconAdjustmentsBolt,
-  IconCloud,
-  IconCurrencyDollar,
-  IconEaseInOut,
-  IconHeart,
-  IconHelp,
-  IconRouteAltLeft,
   IconTerminal2,
 } from "@tabler/icons-react";
 import { CardSpotlight } from "./card-spotlight";

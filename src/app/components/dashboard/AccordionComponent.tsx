@@ -7,7 +7,6 @@ import {
   AccordionTrigger,
 } from "@/app/components/dashboard/Accordion";
 import Image from "next/image";
-import { div } from "framer-motion/client";
 
 interface UserCryptoData {
   userFound: boolean;
@@ -24,19 +23,19 @@ interface Wallet {
 
 const cryptoWallets: Wallet[] = [
   {
-    icon: "https://freelogopng.com/images/all_img/1683021055metamask-icon.png",
-    name: "MetaMask",
+    icon: "/ethereum.svg",
+    name: "Ethereum",
   },
   {
-    icon: "https://freelogopng.com/images/all_img/1683021055metamask-icon.png",
+    icon: "/solana.svg",
     name: "Solana",
   },
   {
-    icon: "https://freelogopng.com/images/all_img/1683021055metamask-icon.png",
+    icon: "mantle.svg",
     name: "Mantle",
   },
   {
-    icon: "https://freelogopng.com/images/all_img/1683021055metamask-icon.png",
+    icon: "base.svg",
     name: "Base",
   },
 ];
@@ -60,8 +59,8 @@ const AccordionComponent = () => {
     console.log(address);
   }
   return (
-    <div className="flex w-full md:w-[35%] flex-col gap-y-3 sm:gap-y-4 md:gap-y-5 mx-auto mb-10 mt-6 sm:mb-16 sm:mt-10 p-[2.5px] rounded-2xl bg-gradient-to-bl from-[#AB57FF] via-[#7180FE] to-[#2ED5F6]">
-      <div className="w-full h-full p-4 bg-black rounded-2xl">
+    <div className="flex w-full md:w-[35%] flex-col gap-y-3 sm:gap-y-4 md:gap-y-5 mx-auto mb-10 mt-6 sm:mb-16 sm:mt-10">
+      <div className="w-full h-full py-10 px-5 bg-black rounded-2xl">
         <p className="font-[700] text-center text-xl sm:text-2xl md:text-3xl text-teal-50 pb-3">
           Your Wallets
         </p>
@@ -73,7 +72,7 @@ const AccordionComponent = () => {
           {cryptoWallets.map((wallet, ind) => {
             return (
               <AccordionItem
-                className="dark:bg-black bg-white rounded-3xl px-4 shadow-xl border border-neutral-200 dark:border-white/[0.1]  shadow-black/[0.5] dark:shadow-white/[0.05] flex flex-col justify-center"
+                className="dark:bg-black bg-white rounded-lg px-4 border border-neutral-200 dark:border-white/[0.1]  shadow-black/[0.5] dark:shadow-white/[0.05] flex flex-col justify-center"
                 value={wallet.name}
               >
                 <AccordionTrigger className="break-words text-left">
@@ -81,9 +80,9 @@ const AccordionComponent = () => {
                     <Image
                       alt=""
                       src={wallet.icon}
-                      width={1000}
-                      height={1000}
-                      className="rounded-full w-8 h-8"
+                      width={800}
+                      height={800}
+                      className="rounded-full w-6 h-6"
                     />
                     <p>{wallet.name}</p>
                   </div>
@@ -112,7 +111,7 @@ const AccordionComponent = () => {
                       addWallet(wallet.name);
                     }}
                     className={
-                      "bg-gradient-to-bl from-[#AB57FF] via-[#7180FE] to-[#2ED5F6] flex flex-row w-full sm:w-[90%] mx-auto py-[10px] px-5 rounded-full items-center justify-center cursor-pointer text-white mt-4"
+                      "bg-gradient-to-bl from-[#593de6] via-[#392d82] to-[#593de6]  hover:bg-gradient-to-bl hover:from-[#221a4c] hover:via-[#593de6] hover:to-[#221a4c] transition-all duration-300 ease-in-out  flex flex-row  sm:w-[60%] mx-auto py-[10px] px-5 rounded-full items-center justify-center cursor-pointer text-white mt-4"
                     }
                   >
                     Add an Account
