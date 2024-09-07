@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
 import Particles from "../components/Particles";
 import Navbar from "../components/Navbar";
 import {

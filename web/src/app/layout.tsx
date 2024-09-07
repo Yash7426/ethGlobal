@@ -1,5 +1,6 @@
 "use client"
 import type { Metadata } from "next";
+import { Toaster } from 'react-hot-toast';
 import local from "next/font/local";
 import "./globals.css";
 import UserProvider from "@/contexts/Usercontext";
@@ -46,6 +47,7 @@ export default function RootLayout({
       >
         <UserProvider>
           <body className={primaryFont.variable}>{children}</body>
+          <Toaster />
         </UserProvider>
       </ThirdwebProvider>
     </html>

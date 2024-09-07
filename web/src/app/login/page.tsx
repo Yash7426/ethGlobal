@@ -12,6 +12,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { anim } from "@/lib/utils";
+import { ConnectWallet } from "@thirdweb-dev/react";
 export const slideUpOpacity = {
   initial: {
     y: 40,
@@ -90,7 +91,7 @@ const page = () => {
         {...anim(blurOutFadeIn)}
         className="min-h-screen flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-lg"
       >
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent,#0e023524,#0e0235f4_70%)] mix-blend-luminosity"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent,#0e023524,#0e0235f4_70%)] mix-blend-luminosity -z-50"></div>
         <div className="w-full max-w-md mx-auto p-8">
           <div className="text-center mb-6">
             {/* Add your logo here */}
@@ -108,7 +109,7 @@ const page = () => {
             </m.h2>
           </div>
 
-          <m.div className="space-y-4">
+          <m.div className="space-y-4 flex justify-center">
             {/* <m.button
               {...anim(slideUpOpacity)}
               className="w-full px-4 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
@@ -157,8 +158,7 @@ const page = () => {
               />
               Continue with solana
             </m.button> */}
-                <ConnectWallet></ConnectWallet>
-
+            <ConnectWallet></ConnectWallet>
           </m.div>
         </div>
       </m.section>
