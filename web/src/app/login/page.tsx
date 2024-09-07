@@ -14,7 +14,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { anim } from "@/lib/utils";
-import { ConnectWallet } from "@thirdweb-dev/rea
+import { ConnectWallet } from "@thirdweb-dev/react"
 import CaptchaTest from "@/components/captcha";
 export const slideUpOpacity = {
   initial: {
