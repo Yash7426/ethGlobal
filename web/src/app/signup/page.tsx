@@ -94,7 +94,7 @@ const Page = () => {
     console.log(tx1.hash);
     setUsername(user);
     setUserId(address);
-
+    
     router.push("/dashboard");
     }
   }

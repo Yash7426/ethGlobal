@@ -32,3 +32,4 @@ export type { CrossChainNameServiceRegister } from "./contracts/CrossChainNameSe
 export { CrossChainNameServiceRegister__factory } from "./factories/contracts/CrossChainNameServiceRegister__factory";
 export type { ICrossChainNameServiceLookup } from "./contracts/ICrossChainNameServiceLookup";
 export { ICrossChainNameServiceLookup__factory } from "./factories/contracts/ICrossChainNameServiceLookup__factory";
+
