@@ -3,7 +3,12 @@ import React, { useState } from "react";
 import Image from "next/image"; // Make sure to import Image if you're using it
 import { LazyMotion, m, domAnimation } from "framer-motion";
 import { anim } from "@/lib/utils";
-
+import { CrossChainNameServiceLookup, CrossChainNameServiceLookup__factory, CrossChainNameServiceRegister, CrossChainNameServiceRegister__factory } from '../../typechain-types';
+import json from  '../../deployments/ethereumSepolia.json' ;
+import { ConnectWallet, useAddress, useSigner } from "@thirdweb-dev/react";
+import {ethers} from 'ethers'
+import { useRouter } from "next/navigation";
+import { useUser } from '../../contexts/Usercontext';
 export const slideUpOpacity = {
   initial: {
     y: 40,
@@ -47,17 +52,58 @@ export const blurOutFadeIn = {
 };
 
 const Page = () => {
-  const [username, setUsername] = useState("");
+  const router = useRouter();
+  const [user, setUser] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false); // Add state to track submission
-
-  const handleInputChange = (e) => {
-    setUsername(e.target.value);
+  const [message,setMessage]= useState(false)
+  const { username, setUsername } = useUser();
+  const {userId, setUserId} = useUser();
+  const signer = useSigner();
+  var address = useAddress();
+  const handleInputChange = (e :any) => {
+    setUser(e.target.value);
   };
-
-  const handleSubmit = (e) => {
+ 
+  const handleSubmit = async (e : any) => {
     e.preventDefault();
-    console.log(username);
+    console.log(user);
+    
+    if(signer != undefined) {
+      const ccnsLookup: CrossChainNameServiceLookup = CrossChainNameServiceLookup__factory.connect(json.ccnsLookup,signer);
+    const ccnsRegister: CrossChainNameServiceRegister = CrossChainNameServiceRegister__factory.connect(json.ccnsRegister,signer);
+      try{
+    
+    console.log(ccnsLookup);
+    console.log("reached")
+    console.log(user + ".ccns")
+    console.log(address)
+    const tx = await ccnsLookup.lookup(user);
+    console.log(tx)
+    if(tx) {
+      setIsSubmitted(true);
+      setMessage(true);
+    } else {
+      setMessage(false);
+    }
+  }catch(e) {
+    console.log(e);
+    setMessage(false);
+    if(address != undefined) {
+    var tx1 = await ccnsRegister.register(user+".ccns",address);
+    await tx1.wait();
+    console.log(tx1.hash);
+    setUsername(user);
+    setUserId(address);
+
+    router.push("/dashboard");
+    }
+  }
+    } else {
+      console.log("Login again")
+    }
+  
     setIsSubmitted(true); // Mark form as submitted
+
   };
 
   return (
@@ -66,7 +112,7 @@ const Page = () => {
         {...anim(blurOutFadeIn)}
         className="min-h-screen flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-lg"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent,#0e023524,#0e0235f4_70%)] mix-blend-luminosity"></div>
+        {/* <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent,#0e023524,#0e0235f4_70%)] mix-blend-luminosity"></div> */}
         <div className="w-full max-w-md mx-auto p-8">
           <div className="text-center mb-6">
             {/* Add your logo here */}
@@ -83,15 +129,16 @@ const Page = () => {
               SignUp to NAME
             </m.h2>
           </div>
-
+           {!signer && <div className="z-50"><ConnectWallet></ConnectWallet></div>}
           {/* The input field and submit button should always be visible */}
-          <form className="flex flex-col gap-4 z-50" onSubmit={handleSubmit}>
+          { signer && <form className="flex flex-col gap-4 z-50" onSubmit={handleSubmit}>
             <input
-              value={username}
+              value={user}
               onChange={handleInputChange}
-              placeholder="Enter your username"
+              placeholder="Enter your user"
               className="w-full px-8 py-3 bg-gray-800 text-white rounded-lg z-50"
             />
+            {message && <p className="text-s text-red-500"> user already exists</p>}
             {!isSubmitted && (
               <m.button
                 initial={{
@@ -131,10 +178,10 @@ const Page = () => {
                 </svg>
               </m.button>
             )}
-          </form>
+          </form>}
 
-          {/* Conditionally render the blockchain options after form finalizing username */}
-          {isSubmitted && (
+          {/* Conditionally render the blockchain options after form finalizing user */}
+          {/* {isSubmitted && (
             <m.div {...anim(blurOutFadeIn)} className="space-y-4 mt-6">
               <m.button
                 {...anim(slideUpOpacity)}
@@ -178,7 +225,7 @@ const Page = () => {
                 Continue with Solana
               </m.button>
             </m.div>
-          )}
+          )} */}
         </div>
       </m.section>
     </LazyMotion>
