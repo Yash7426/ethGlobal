@@ -22,7 +22,7 @@ const ProgressDemo: React.FC<ProgressDemoProps> = ({ progress }) => {
       value={currentProgress}
     >
       <Progress.Indicator
-        className="bg-white w-full h-full transition-transform duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
+        className="bg-[#593de6] w-full h-full transition-transform duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
         style={{ transform: `translateX(-${100 - currentProgress}%)` }}
       />
     </Progress.Root>
