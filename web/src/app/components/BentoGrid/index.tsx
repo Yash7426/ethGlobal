@@ -4,27 +4,27 @@ import BentoCard from "../BentoCard";
 const data = [
   {
     id: 1,
-    title: "Human Verification",
+    title: "Unified Identity ",
     description:
-      "Design tasks that are difficult for bots to perform but easy for humans.",
+      "Users create unique, DNS-like domain names that link all their blockchain addresses under one human-centered identity",
   },
   {
     id: 2,
-    title: "Anti-Cheating Measures",
+    title: "Task-Based Verification",
     description:
-      "Set an expiration time for tasks to prevent users from exploiting old tasks that may no longer be relevant.",
+      " Users earn points by completing specific tasks, helping to distinguish genuine human users from automated actors",
   },
   {
     id: 3,
-    title: "Gamification and Rewards",
+    title: "Fair Airdrops",
     description:
-      "Offer bonus points for completing tasks quickly or for completing a series of related tasks, encouraging continuous engagement.",
+      "Tokens are distributed based on the user's domain name, tied to their primary wallet. This ensures that no one can unfairly claim multiple airdrops through different addresses.",
   },
   {
     id: 4,
-    title: "Cross-Chain Compatibility",
+    title: "Enhanced Security",
     description:
-      "Unify points across chains under one identity, allowing users to accumulate points regardless of their active chain.",
+      "Advanced cryptographic techniques verify that each identity is authentic, preventing manipulation or duplicate claims.",
   },
 ];
 
