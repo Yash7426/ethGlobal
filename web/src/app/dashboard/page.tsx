@@ -20,7 +20,7 @@ const page = () => {
         </div>
         <div className="flex flex-col mt-40 ml-48">
           <h1 className="text-gray-200 font-primary-font text-5xl z-50">
-            Hi UserName
+            Hi John Doe
           </h1>
           <p className="text-gray-300 font-light max-w-3xl z-50">
             Your journey towards unlocking new opportunities starts here. Each

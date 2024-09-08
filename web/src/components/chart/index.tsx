@@ -36,7 +36,7 @@ export const options = {
         size: 30,
         weight: "bold",
       },
-    }
+    },
   },
   scales: {
     y: {
@@ -50,11 +50,15 @@ export const options = {
           weight: "bold",
         },
       },
-      ticks: { color: "#fff", beginAtZero: true,font: {
-        family: "Satoshi",
-        size: 15,
-        weight: "bold",
-      }, },
+      ticks: {
+        color: "#fff",
+        beginAtZero: true,
+        font: {
+          family: "Satoshi",
+          size: 15,
+          weight: "bold",
+        },
+      },
     },
     x: {
       title: {
@@ -67,23 +71,27 @@ export const options = {
           weight: "bold",
         },
       },
-      stacked:true,
-      ticks: { color: "#FFF", beginAtZero: true ,font: {
-        family: "Satoshi",
-        size: 15,
-        weight: "bold",
-      },},
+      stacked: true,
+      ticks: {
+        color: "#FFF",
+        beginAtZero: true,
+        font: {
+          family: "Satoshi",
+          size: 15,
+          weight: "bold",
+        },
+      },
     },
   },
 };
 
-const labels = ["MetaMask", "Solana", "Mantle", "Base","MetaMask", "Solana", "Mantle", "Base"];
+const labels = ["Sign", "Lit", "Reclaim", "Mina", "KYC", "Lens", "Base"];
 export const data = {
   labels,
   datasets: [
     {
       label: "Tasks Completed",
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 10 })),
+      data: [5, 6, 7, 4, 8, 6, 9],
       borderColor: "#593de6",
       backgroundColor: "#6e61f3",
       borderWidth: 1,
@@ -92,7 +100,7 @@ export const data = {
     },
     {
       label: "Total tasks",
-      data: [10, 10, 10, 10,10,10,10,10],
+      data: [10, 10, 10, 10, 10, 10, 10],
       borderColor: "#8280f9",
       backgroundColor: "#a4a9fd",
       borderWidth: 1,
