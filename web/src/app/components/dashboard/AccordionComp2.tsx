@@ -40,13 +40,13 @@ const blockchainProtocols: Protocol[] = [
       {
         name: "Attesting Schema",
         desc: "Deploy your first smart contract on the Ethereum network.",
-        ctaNeeded: <CaptchaTest></CaptchaTest>,
+        ctaNeeded: <CaptchaTest displayText="Test Captcha"></CaptchaTest>,
         icon: <IconTerminal2 />,
       },
       {
         name: "Creating Schema",
         desc: "Use decentralized applications on the Ethereum blockchain.",
-        ctaNeeded: <DynamicFields />,
+        ctaNeeded: <DynamicFields displayText="Attest Schema" />,
         icon: <IconTerminal2 />,
       },
       {
@@ -194,7 +194,7 @@ const Feature = ({
         >
           Cta text
         </button> */}
-        {ctaNeeded}
+        <div className="mt-auto">{ctaNeeded}</div>
       </div>
     </CardSpotlight>
   );
