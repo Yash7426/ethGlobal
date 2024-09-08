@@ -30,7 +30,6 @@ type Protocol = {
   tasks: Task[];
 };
 
-
 const blockchainProtocols: Protocol[] = [
   {
     name: "Sign Protocol",
@@ -161,8 +160,6 @@ const Feature = ({
   icon: React.ReactNode;
   index: number;
 }) => {
-
-
   return (
     <CardSpotlight className="p-0">
       <div

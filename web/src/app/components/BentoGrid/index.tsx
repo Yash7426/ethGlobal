@@ -4,9 +4,9 @@ import BentoCard from "../BentoCard";
 const data = [
   {
     id: 1,
-    title: "Human Verification",
+    title: "Build Your Score",
     description:
-      "Design tasks that are difficult for bots to perform but easy for humans.",
+      "Verifies your Web3 and Web2 presence, unlocking new opportunities as you complete Tasks and build your score. A higher score boosts trust, enabling greater participation in community programs and governance",
   },
   {
     id: 2,
