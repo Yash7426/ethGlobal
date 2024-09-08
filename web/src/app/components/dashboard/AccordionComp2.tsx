@@ -11,12 +11,15 @@ import ProgressDemo from "./Progressbar";
 import { cn } from "@/lib/utils";
 import { IconTerminal2 } from "@tabler/icons-react";
 import { CardSpotlight } from "./card-spotlight";
+import { EvmChains, SignProtocolClient, SpMode } from "@ethsign/sp-sdk";
+import SignProtocol from "@/app/protocols/signProtocol";
+import CaptchaTest from "@/components/captcha";
 
 type Task = {
   name: string;
   desc: string;
   icon: React.ReactNode;
-  ctaNeeded: string;
+  ctaNeeded: React.ReactNode;
 };
 
 type Protocol = {
@@ -25,6 +28,7 @@ type Protocol = {
   icon: string;
   tasks: Task[];
 };
+
 
 const blockchainProtocols: Protocol[] = [
   {
@@ -35,7 +39,7 @@ const blockchainProtocols: Protocol[] = [
       {
         name: "Attesting Schema",
         desc: "Deploy your first smart contract on the Ethereum network.",
-        ctaNeeded: "Install MetaMask",
+        ctaNeeded: <CaptchaTest></CaptchaTest>,
         icon: <IconTerminal2 />,
       },
       {
@@ -152,10 +156,12 @@ const Feature = ({
 }: {
   name: string;
   desc: string;
-  ctaNeeded: string;
+  ctaNeeded: React.ReactNode;
   icon: React.ReactNode;
   index: number;
 }) => {
+
+
   return (
     <CardSpotlight className="p-0">
       <div
@@ -177,7 +183,7 @@ const Feature = ({
         <p className="text-sm text-neutral-600 dark:text-neutral-300 max-w-xs relative z-10 px-10 pb-2">
           {desc}
         </p>
-        <button
+        {/* <button
           onClick={() => {
             // call cta here
           }}
@@ -186,7 +192,8 @@ const Feature = ({
           }
         >
           Cta text
-        </button>
+        </button> */}
+        {ctaNeeded}
       </div>
     </CardSpotlight>
   );

@@ -8,22 +8,24 @@ import {
   ModalTrigger,
 } from "@/components/Modal";
 
-interface ModalProps2 {
+interface ModalProps3 {
   displayText?: string;
   heading?: string;
   subheading?: string;
   title?: string;
   buttonText?: string;
+  api?: string;
   value: string;
   callback?: () => void;
 }
 
-const QRCODE: React.FC<ModalProps2> = ({
+const QRCODE: React.FC<ModalProps3> = ({
   displayText,
   heading,
   subheading,
   title,
   value,
+  api,
   buttonText,
   callback,
 }) => {

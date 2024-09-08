@@ -15,6 +15,11 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import SignProtocol from "@/app/protocols/signProtocol";
+import toast from "react-hot-toast";
+import { EvmChains, SignProtocolClient, SpMode } from "@ethsign/sp-sdk";
+import { useAddress, useSigner } from "@thirdweb-dev/react";
+import { Signer } from "ethers";
 
 interface ModalProps {
   displayText?: string;
@@ -24,6 +29,10 @@ interface ModalProps {
   buttonText?: string;
   callback?: () => void;
 }
+
+const client = new SignProtocolClient(SpMode.OnChain, {
+  chain: EvmChains.sepolia,
+});
 
 const CaptchaTest: React.FC<ModalProps> = ({
   displayText,
@@ -37,16 +46,39 @@ const CaptchaTest: React.FC<ModalProps> = ({
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [captchaError, setCaptchaError] = useState(false);
+  const address = useAddress();
+  const signer = useSigner();
+
+  const newUser = new SignProtocol(client,address as string,signer as Signer);
 
   useEffect(() => {
     loadCaptchaEnginge(8); // Load the captcha engine with 8 characters
   }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (validateCaptcha(userCaptcha)) {
       // do your stuff
-      loadCaptchaEnginge(8); // Reload the captcha after successful match
-      resetForm();
+      const res = await newUser.createNotaryAttestation(name, message, "0x11f");
+      if (res.slice(0, 5) == "Error") {
+        toast.error("Error Completing Task", {
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+      } else {
+        toast(`Successfully Completed Task : ${res}`, {
+          icon: "👏",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+        loadCaptchaEnginge(8); // Reload the captcha after successful match
+        resetForm();
+      }
     } else {
       setCaptchaError(true);
     }

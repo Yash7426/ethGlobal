@@ -15,6 +15,11 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { useAddress, useSigner } from "@thirdweb-dev/react";
+import SignProtocol from "@/app/protocols/signProtocol";
+import { Signer } from "ethers";
+import { EvmChains, SignProtocolClient, SpMode } from "@ethsign/sp-sdk";
+import toast from "react-hot-toast";
 
 interface ModalProps {
   displayText?: string;
@@ -24,7 +29,9 @@ interface ModalProps {
   buttonText?: string;
   callback?: () => void;
 }
-
+const client = new SignProtocolClient(SpMode.OnChain, {
+  chain: EvmChains.sepolia,
+})
 const DynamicFields: React.FC<ModalProps> = ({
   displayText,
   heading,
@@ -34,7 +41,10 @@ const DynamicFields: React.FC<ModalProps> = ({
   callback,
 }) => {
   const [fields, setFields] = useState([{ name: "", type: "" }]);
+  const address = useAddress();
+  const signer = useSigner();
 
+  const newUser = new SignProtocol(client,address as string,signer as Signer)
   // Handler for adding new fields
   const addField = () => {
     setFields([...fields, { name: "", type: "" }]);
@@ -58,8 +68,29 @@ const DynamicFields: React.FC<ModalProps> = ({
     setFields(newFields);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // do your stuff
+    // @ts-ignore
+    const res =await  newUser.schemaCreated(fields,"Title");
+    if (res.slice(0, 5) == "Error") {
+      toast.error("Error Creating Schema", {
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
+    } else {
+      toast(`Successfully Created Schema : ${res}`, {
+        icon: "👏",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
+      resetForm();
+    }
     console.log(fields)
   };
 
