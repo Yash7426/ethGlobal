@@ -18,6 +18,7 @@ import NormalInput from "@/components/NormalInput";
 import DynamicFields from "@/components/attestSchema";
 import blockchainLogo from "../blockchainLogo";
 import QRCODE from "@/components/QRcode";
+import AadharKYC from "@/components/AadharKYC";
 
 type Task = {
   name: string;
@@ -58,36 +59,6 @@ const blockchainProtocols: Protocol[] = [
         ctaNeeded: "Install MetaMask",
         icon: <IconTerminal2 />,
       },
-      {
-        name: "Interact with DApps",
-        desc: "Use decentralized applications on the Ethereum blockchain.",
-        ctaNeeded: "Connect Wallet",
-        icon: <IconTerminal2 />,
-      },
-      {
-        name: "Deploy Smart Contract",
-        desc: "Deploy your first smart contract on the Ethereum network.",
-        ctaNeeded: "Install MetaMask",
-        icon: <IconTerminal2 />,
-      },
-      {
-        name: "Interact with DApps",
-        desc: "Use decentralized applications on the Ethereum blockchain.",
-        ctaNeeded: "Connect Wallet",
-        icon: <IconTerminal2 />,
-      },
-      {
-        name: "Deploy Smart Contract",
-        desc: "Deploy your first smart contract on the Ethereum network.",
-        ctaNeeded: "Install MetaMask",
-        icon: <IconTerminal2 />,
-      },
-      {
-        name: "Interact with DApps",
-        desc: "Use decentralized applications on the Ethereum blockchain.",
-        ctaNeeded: "Connect Wallet",
-        icon: <IconTerminal2 />,
-      },
     ],
   },
   {
@@ -97,33 +68,45 @@ const blockchainProtocols: Protocol[] = [
     tasks: [
       {
         name: "Count Amazon Orders",
-        desc: "Set up a Solana wallet to store your tokens.",
-        ctaNeeded: <QRCODE value="uber" displayText="Scan QR"/>,
+        desc: "Earn rewards by verfying your orders history on amazon",
+        ctaNeeded: <QRCODE value="uber" displayText="Scan QR" />,
         icon: <IconTerminal2 />,
       },
       {
-        name: "Stake SOL",
-        desc: "Earn rewards by staking your SOL tokens on the network.",
+        name: "Paytm Transactions",
+        desc: "Earn reward by verifying your paytm transaction history",
+        ctaNeeded: "Choose a Validator",
+        icon: <IconTerminal2 />,
+      },
+      {
+        name: "Uber Rides",
+        desc: "Earn rewards by verifying number of uber rides",
         ctaNeeded: "Choose a Validator",
         icon: <IconTerminal2 />,
       },
     ],
   },
   {
-    name: "Polkadot",
+    name: "KYC authenticaion",
     description:
-      "A multi-chain network that enables interoperability between blockchains.",
+      "Authenticate your real time face with your government verified documents",
     icon: "/logo2.png",
     tasks: [
       {
-        name: "Join Parachain Auction",
-        desc: "Participate in the auction to support your favorite parachain.",
-        ctaNeeded: "Contribute DOT",
+        name: "Aadhar Card",
+        desc: "Use your aadhar card for authenticating your real time face.",
+        ctaNeeded: <AadharKYC />,
         icon: <IconTerminal2 />,
       },
       {
-        name: "Transfer Assets",
-        desc: "Transfer assets between different parachains using Polkadot.",
+        name: "Passport",
+        desc: "Use your passport for authenticating your real time face.",
+        ctaNeeded: "Connect Polkadot.js",
+        icon: <IconTerminal2 />,
+      },
+      {
+        name: "Voter Id",
+        desc: "Use your Voter Id for authenticating your real time face.",
         ctaNeeded: "Connect Polkadot.js",
         icon: <IconTerminal2 />,
       },
@@ -157,6 +140,32 @@ const blockchainProtocols: Protocol[] = [
       {
         name: "Sign Transactions",
         desc: "Write and deploy smart contracts using the Plutus platform.",
+        ctaNeeded: "Access Plutus Playground",
+        icon: <IconTerminal2 />,
+      },
+    ],
+  },
+  {
+    name: "On chain verification",
+    description:
+      "Checks for your transaction history, NFT holdings and balance on verious mainnets.",
+    icon: "/logo2.png",
+    tasks: [
+      {
+        name: "Transaction History",
+        desc: "Earn rewards by verifying your transaction history on various mainnets.",
+        ctaNeeded: "Access Plutus Playground",
+        icon: <IconTerminal2 />,
+      },
+      {
+        name: "NFT Holdings",
+        desc: "Earn rewards by verifying your NFT holdings on various mainnets.",
+        ctaNeeded: "Access Plutus Playground",
+        icon: <IconTerminal2 />,
+      },
+      {
+        name: "Balance",
+        desc: "Earn rewards by verifying your balance amounts on various mainnets.",
         ctaNeeded: "Access Plutus Playground",
         icon: <IconTerminal2 />,
       },

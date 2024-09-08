@@ -13,10 +13,13 @@ const AadharKYC = () => {
     // face url -> uploadResult
     console.log(uploadUrl, uploadResult);
     try {
-      const response = await axios.post("url_here/compare-faces", {
-        image_url_1: uploadUrl,
-        image_url_2: uploadResult,
-      });
+      const response = await axios.post(
+        "https://558djpdp-8000.inc1.devtunnels.ms/compare-faces",
+        {
+          image_url_1: uploadUrl,
+          image_url_2: uploadResult,
+        }
+      );
 
       console.log(response);
 

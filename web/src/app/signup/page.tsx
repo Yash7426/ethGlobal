@@ -132,7 +132,7 @@ const page = () => {
         {...anim(blurOutFadeIn)}
         className="min-h-screen flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-lg relative"
       >
-        <div className="absolute top-0 right-12 w-[400px] h-[400px] overflow-hidden">
+        <div className="absolute top-0 right-10 w-[400px] h-[400px] overflow-hidden">
           <Image
             src="/gra5.png"
             alt="Quarter Image"
@@ -142,20 +142,18 @@ const page = () => {
           />
         </div>
         {/* <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent,#0e023524,#0e0235f4_70%)] mix-blend-luminosity"></div> */}
-        <div className="w-full max-w-md mx-auto p-8">
+        <div className="w-full max-w-xl mx-auto p-8">
           <div className="text-center mb-6">
             {/* Add your logo here */}
             <m.div
               {...anim(slideUpOpacity)}
               className="flex justify-center items-center mb-4 text-white"
-            >
-              <h2>LOGO</h2>
-            </m.div>
+            ></m.div>
             <m.h2
               {...anim(slideUpOpacity)}
               className="text-5xl font-bold text-white font-primary-font"
             >
-              SignUp to NAME
+              SignUp to HUMANIZE
             </m.h2>
           </div>
           {!signer && (
