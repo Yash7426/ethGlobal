@@ -25,6 +25,7 @@
     "cloudinary": "^2.0.0",
     "clsx": "^2.1.1",
     "ethers": "^5.7.2",
+    "ethglobal": "file:",
     "faker": "5.5.3",
     "framer-motion": "^11.5.4",
     "lucide-react": "^0.436.0",

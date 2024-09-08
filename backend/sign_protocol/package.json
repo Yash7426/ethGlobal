@@ -13,6 +13,7 @@
     "@thirdweb-dev/react": "^4.9.4",
     "@thirdweb-dev/sdk": "^4.0.99",
     "ethers": "^5.7.2",
+    "my-thirdweb-wallet-app": "file:",
     "next": "14.2.8",
     "react": "^18",
     "react-dom": "^18"

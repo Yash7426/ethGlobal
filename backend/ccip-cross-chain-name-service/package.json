@@ -8,5 +8,8 @@
     "ethers": "^5.7.2",
     "hardhat": "^2.14.1",
     "typechain": "^8.3.2"
+  },
+  "dependencies": {
+    "ccip-cross-chain-name-service": "file:"
   }
 }
