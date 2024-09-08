@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import axios from "axios";
 import { FileUploadDemo } from "../fileUpload";
 import CameraComp from "../CameraComp";
 import Image from "next/image";
@@ -11,6 +12,25 @@ const AadharKYC = () => {
     // aadhar url -> uploadUrl
     // face url -> uploadResult
     console.log(uploadUrl, uploadResult);
+    try {
+      const response = await axios.post("url_here/compare-faces", {
+        image_url_1: uploadUrl,
+        image_url_2: uploadResult,
+      });
+
+      console.log(response);
+
+      // yaha if vali chez check krlena
+      if (response.data.success) {
+        console.log("Success");
+        //add toast here
+      } else {
+        console.error("Comparison failed");
+        //add toast here
+      }
+    } catch (error) {
+      console.error("Request failed");
+    }
   }
   return (
     <div className="flex flex-col gap-y-5  p-10 relative">
