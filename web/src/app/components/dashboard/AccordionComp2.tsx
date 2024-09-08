@@ -17,6 +17,8 @@ import CaptchaTest from "@/components/captcha";
 import NormalInput from "@/components/NormalInput";
 import DynamicFields from "@/components/attestSchema";
 import blockchainLogo from "../blockchainLogo";
+import QRCODE from "@/components/QRcode";
+
 type Task = {
   name: string;
   desc: string;
@@ -89,14 +91,14 @@ const blockchainProtocols: Protocol[] = [
     ],
   },
   {
-    name: "Solana",
+    name: "Reclaim Protocol",
     description: "A high-performance blockchain supporting fast transactions.",
     icon: "/logo2.png",
     tasks: [
       {
-        name: "Create a Wallet",
+        name: "Count Amazon Orders",
         desc: "Set up a Solana wallet to store your tokens.",
-        ctaNeeded: "Download Phantom Wallet",
+        ctaNeeded: <QRCODE value="uber" displayText="Scan QR"/>,
         icon: <IconTerminal2 />,
       },
       {
