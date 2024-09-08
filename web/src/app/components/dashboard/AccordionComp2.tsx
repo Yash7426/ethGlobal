@@ -14,6 +14,7 @@ import { CardSpotlight } from "./card-spotlight";
 import { EvmChains, SignProtocolClient, SpMode } from "@ethsign/sp-sdk";
 import SignProtocol from "@/app/protocols/signProtocol";
 import CaptchaTest from "@/components/captcha";
+import DynamicFields from "@/components/attestSchema";
 
 type Task = {
   name: string;
@@ -43,9 +44,9 @@ const blockchainProtocols: Protocol[] = [
         icon: <IconTerminal2 />,
       },
       {
-        name: "Interact with DApps",
+        name: "Creating Schema",
         desc: "Use decentralized applications on the Ethereum blockchain.",
-        ctaNeeded: "Connect Wallet",
+        ctaNeeded: <DynamicFields />,
         icon: <IconTerminal2 />,
       },
       {

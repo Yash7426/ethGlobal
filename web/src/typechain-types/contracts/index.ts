@@ -5,5 +5,3 @@ export type { CrossChainNameServiceLookup } from "./CrossChainNameServiceLookup"
 export type { CrossChainNameServiceReceiver } from "./CrossChainNameServiceReceiver";
 export type { CrossChainNameServiceRegister } from "./CrossChainNameServiceRegister";
 export type { ICrossChainNameServiceLookup } from "./ICrossChainNameServiceLookup";
-export type { WhitelistHook } from "./WhitelistHook";
-export type { WhitelistMananger } from "./WhitelistMananger";

@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 import { useAddress, useSigner } from "@thirdweb-dev/react";
 import SignProtocol from "@/app/protocols/signProtocol";
 import { Signer } from "ethers";
-import { EvmChains, SignProtocolClient, SpMode } from "@ethsign/sp-sdk";
+import { EvmChains, SchemaItem, SignProtocolClient, SpMode } from "@ethsign/sp-sdk";
 import toast from "react-hot-toast";
 
 interface ModalProps {
@@ -44,7 +44,7 @@ const DynamicFields: React.FC<ModalProps> = ({
   const address = useAddress();
   const signer = useSigner();
 
-  const newUser = new SignProtocol(client,address as string,signer as Signer)
+  // const newUser = new SignProtocol(client,address as string,signer as Signer)
   // Handler for adding new fields
   const addField = () => {
     setFields([...fields, { name: "", type: "" }]);
@@ -67,12 +67,28 @@ const DynamicFields: React.FC<ModalProps> = ({
     newFields[index][name] = value;
     setFields(newFields);
   };
+  async function createSchema(data : SchemaItem[], title : string) {
+    try{
+    const res = await client.createSchema({
+      name: title,
+      data: data,
+      hook : "0x442B7f3595eE078D79bcbdE21A9Bb191f4010De5",
+      // registrant :  address? `0x${address.slice(2)}` : "0x442B7f3595eE078D79bcbdE21A9Bb191f4010De5"
+    })
+    // setAttestationResult(res.schemaId)
+    console.log(res.schemaId);
+    return res.schemaId;
+  } catch(e) {
+      console.log(e);
+      return "Schema not created";
+  }
+  }
 
   const handleSubmit = async () => {
     // do your stuff
     // @ts-ignore
-    const res =await  newUser.schemaCreated(fields,"Title");
-    if (res.slice(0, 5) == "Error") {
+    const res =await  createSchema(fields,"Title");
+    if (res== "Schema not created") {
       toast.error("Error Creating Schema", {
         style: {
           borderRadius: "10px",
@@ -82,7 +98,7 @@ const DynamicFields: React.FC<ModalProps> = ({
       });
     } else {
       toast(`Successfully Created Schema : ${res}`, {
-        icon: "👏",
+        duration : 10,
         style: {
           borderRadius: "10px",
           background: "#333",
