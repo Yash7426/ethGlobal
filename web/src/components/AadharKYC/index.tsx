@@ -16,8 +16,8 @@ const AadharKYC = () => {
       const response = await axios.post(
         "https://558djpdp-8000.inc1.devtunnels.ms/compare-faces",
         {
-          image_url_1: uploadUrl,
-          image_url_2: uploadResult,
+          image_url_1: "https://res.cloudinary.com/di8ui03yr/image/upload/v1725744716/product-images/photo_nb4b6v.png",
+          image_url_2: "https://res.cloudinary.com/di8ui03yr/image/upload/v1725744806/product-images/photo_zac0km.png"
         }
       );
 

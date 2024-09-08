@@ -20,7 +20,7 @@ import TextReveal from "@/components/TextReveal";
 import BentoGrid from "./components/BentoGrid";
 import Ripple from "@/components/magicui/ripple";
 
-
+// @ts-ignore
 const Spline = React.lazy(() => import("@splinetool/react-spline/next"));
 
 export const slideUpOpacity = {
@@ -125,7 +125,7 @@ export default function Home() {
 
   const navigateToPage = () => {
     // Navigate to the "/login" page
-    router.push("/login");
+    router.push("/signup");
   };
 
   useEffect(() => {

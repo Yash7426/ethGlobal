@@ -30,7 +30,7 @@ const providerValues : ProviderValues = {
 const providerIds : ProviderId = {
   amazon : '5f83ab14-9656-4552-9fbc-482e07022766', // Amazon 2023 Order Count
   aadhar : '5e1302ca-a3dd-4ef8-bc25-24fcc97dc800', // Aadhaar Card Date of Birth
-  uber: '867fc359-e958-410a-b08a-70b066d5d240', // Uber Us - 2
+  uber: '6d3f6753-7ee6-49ee-a545-62f1b1822ae5', // Uber Us - 2
   bank : 'e56a707e-e8e9-458e-846a-bda8d9699d79', // Bank of America Bank Balance
   uberuser : '9d2ea353-8819-447d-9e3f-c433a0d9fe40', // Uber user credentials
   facebook : '309e9bc9-be15-4b46-8212-6cc1c0ce14a2', // Facebook account associated with Instagram.
