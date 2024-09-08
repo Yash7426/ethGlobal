@@ -18,7 +18,12 @@ import { cn } from "@/lib/utils";
 import { useAddress, useSigner } from "@thirdweb-dev/react";
 import SignProtocol from "@/app/protocols/signProtocol";
 import { Signer } from "ethers";
-import { EvmChains, SchemaItem, SignProtocolClient, SpMode } from "@ethsign/sp-sdk";
+import {
+  EvmChains,
+  SchemaItem,
+  SignProtocolClient,
+  SpMode,
+} from "@ethsign/sp-sdk";
 import toast from "react-hot-toast";
 
 interface ModalProps {
@@ -31,7 +36,7 @@ interface ModalProps {
 }
 const client = new SignProtocolClient(SpMode.OnChain, {
   chain: EvmChains.sepolia,
-})
+});
 const DynamicFields: React.FC<ModalProps> = ({
   displayText,
   heading,
@@ -67,47 +72,49 @@ const DynamicFields: React.FC<ModalProps> = ({
     newFields[index][name] = value;
     setFields(newFields);
   };
-  async function createSchema(data : SchemaItem[], title : string) {
-    try{
-    const res = await client.createSchema({
-      name: title,
-      data: data,
-      hook : "0x442B7f3595eE078D79bcbdE21A9Bb191f4010De5",
-      // registrant :  address? `0x${address.slice(2)}` : "0x442B7f3595eE078D79bcbdE21A9Bb191f4010De5"
-    })
-    // setAttestationResult(res.schemaId)
-    console.log(res.schemaId);
-    return res.schemaId;
-  } catch(e) {
+  async function createSchema(data: SchemaItem[], title: string) {
+    try {
+      const res = await client.createSchema({
+        name: title,
+        data: data,
+        hook: "0x442B7f3595eE078D79bcbdE21A9Bb191f4010De5",
+        // registrant :  address? `0x${address.slice(2)}` : "0x442B7f3595eE078D79bcbdE21A9Bb191f4010De5"
+      });
+      // setAttestationResult(res.schemaId)
+      console.log(res.schemaId);
+      return res.schemaId;
+    } catch (e) {
       console.log(e);
       return "Schema not created";
-  }
+    }
   }
 
   const handleSubmit = async () => {
     // do your stuff
     // @ts-ignore
-    const res =await  createSchema(fields,"Title");
-    if (res== "Schema not created") {
+    const res = await createSchema(fields, "Title");
+    if (res == "Schema not created") {
       toast.error("Error Creating Schema", {
         style: {
           borderRadius: "10px",
           background: "#333",
           color: "#fff",
+          zIndex: 99990
         },
       });
     } else {
       toast(`Successfully Created Schema : ${res}`, {
-        duration : 10,
+        duration: 10,
         style: {
           borderRadius: "10px",
           background: "#333",
           color: "#fff",
+          zIndex: 99990
         },
       });
       resetForm();
     }
-    console.log(fields)
+    console.log(fields);
   };
 
   const resetForm = () => {
@@ -115,7 +122,7 @@ const DynamicFields: React.FC<ModalProps> = ({
   };
 
   return (
-    <div className="py-40  flex items-center justify-center">
+    <div className="flex items-center justify-center">
       <Modal>
         <ModalTrigger className="bg-black dark:bg-white dark:text-black text-white flex justify-center group/modal-btn">
           <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
@@ -128,7 +135,9 @@ const DynamicFields: React.FC<ModalProps> = ({
         <ModalBody>
           <ModalContent>
             <div className="p-4">
-              <h2 className="text-2xl font-bold mb-4 text-gray-100">Generate Schema</h2>
+              <h2 className="text-2xl font-bold mb-4 text-gray-100">
+                Generate Schema
+              </h2>
 
               {/* Render dynamic fields */}
               {fields.map((field, index) => (
@@ -158,17 +167,16 @@ const DynamicFields: React.FC<ModalProps> = ({
 
               <button
                 onClick={addField}
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg mr-2"
+                className="bg-gray-200 text-black font-primary-font font-bold transition-all duration-200 hover:bg-transparent hover:text-gray-200 hover:border-2 hover:border-gray-200 px-4 py-2 rounded-lg mr-2"
               >
                 Add Field
               </button>
               <button
                 onClick={handleSubmit}
-                className="bg-green-500 text-white px-4 py-2 rounded-lg"
+                className="bg-[#392d82]  transition-all duration-200 hover:bg-[#593de6] font-bold font-primary-font text-white px-4 py-2 rounded-lg"
               >
                 Submit
               </button>
-              
             </div>
           </ModalContent>
         </ModalBody>

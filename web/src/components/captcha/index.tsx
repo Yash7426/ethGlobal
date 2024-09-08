@@ -1,10 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
-// import {
-//   loadCaptchaEnginge,
-//   LoadCanvasTemplate,
-//   validateCaptcha,
-// } from "react-simple-captcha";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  validateCaptcha,
+} from "react-simple-captcha";
 import {
   Modal,
   ModalBody,
@@ -15,7 +15,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import SignProtocol from "@/app/protocols/signProtocol";
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { EvmChains, SignProtocolClient, SpMode } from "@ethsign/sp-sdk";
 import { useAddress, useSigner } from "@thirdweb-dev/react";
 import { Signer } from "ethers";
@@ -43,38 +43,43 @@ const CaptchaTest: React.FC<ModalProps> = ({
 }) => {
   const [userCaptcha, setUserCaptcha] = useState("");
   const [name, setName] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [captchaError, setCaptchaError] = useState(false);
-  const address = useAddress();
-  const signer = useSigner();
 
   // const newUser = new SignProtocol(client,address as string,signer as Signer);
 
   useEffect(() => {
-    // loadCaptchaEnginge(8); // Load the captcha engine with 8 characters
-  }, []);
+    if(isOpen)
+      loadCaptchaEnginge(6); // Load the captcha engine with 8 characters
+  }, [isOpen]);
 
-  async function createNotaryAttestation(name: string, message: string,signer:string): Promise<string> {
-    return client.createAttestation({
-      schemaId: "0x11f",
-      data: {
-        name,
-        message
-      },
-      indexingValue: signer.toLowerCase()
-    }).then((res) => {
-      console.log(res);
-      return res.attestationId;
-
-    }).catch((e) => {
-      console.log(e);
-      return "You are not valid attester";
-    });
-  
-}
+  async function createNotaryAttestation(
+    name: string,
+    message: string,
+    signer: string
+  ): Promise<string> {
+    return client
+      .createAttestation({
+        schemaId: "0x11f",
+        data: {
+          name,
+          message,
+        },
+        indexingValue: signer.toLowerCase(),
+      })
+      .then((res) => {
+        console.log(res);
+        return res.attestationId;
+      })
+      .catch((e) => {
+        console.log(e);
+        return "You are not valid attester";
+      });
+  }
 
   const handleSubmit = async () => {
-    // if (validateCaptcha(userCaptcha)) {
+    if (validateCaptcha(userCaptcha)) {
       // do your stuff
       const res = await createNotaryAttestation(name, message, "0x11f");
       console.log(res);
@@ -84,25 +89,27 @@ const CaptchaTest: React.FC<ModalProps> = ({
             borderRadius: "10px",
             background: "#333",
             color: "#fff",
+            zIndex: 99990
           },
         });
       } else {
         console.log("validated");
         toast.success(`Successfully Completed Task : ${res}`, {
-
-          duration:10,
+          duration: 10,
           style: {
             borderRadius: "10px",
             background: "#333",
             color: "#fff",
+            zIndex: 99990
           },
         });
-        // loadCaptchaEnginge(8); // Reload the captcha after successful match
+        loadCaptchaEnginge(6); // Reload the captcha after successful match
         resetForm();
       }
-    // } else {
-    //   setCaptchaError(true);
-    // }
+    } else {
+      setCaptchaError(true);
+    }
+    setIsOpen(false);
   };
 
   const resetForm = () => {
@@ -113,23 +120,25 @@ const CaptchaTest: React.FC<ModalProps> = ({
   };
 
   return (
-    <div className="py-40  flex items-center justify-center">
+    <div className="flex items-center justify-center">
       <Modal>
-        <ModalTrigger className="bg-black dark:bg-white dark:text-black text-white flex justify-center group/modal-btn">
-          <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
-            {displayText}
-          </span>
-          <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
-            ✈️
-          </div>
-        </ModalTrigger>
+        <div onClick={()=>{setIsOpen(true)}}>
+          <ModalTrigger className="bg-black dark:bg-white dark:text-black text-white flex justify-center group/modal-btn">
+            <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
+              {displayText}
+            </span>
+            <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
+              ✈️
+            </div>
+          </ModalTrigger>
+        </div>
         <ModalBody>
           <ModalContent>
             <div className="flex justify-center items-center z-50">
               <div className="w-full max-w-sm">
                 <div className="flex flex-col items-center space-y-4">
                   <div className="mt-3">
-                    {/*<LoadCanvasTemplate reloadText=" " reloadColor="#593de6" />*/}
+                    <LoadCanvasTemplate reloadText=" " reloadColor="#593de6" />
                   </div>
 
                   <div className="mt-3 w-full">

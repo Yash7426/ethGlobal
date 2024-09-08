@@ -31,9 +31,10 @@ export function FileUploadDemo({ setuploadUrl }: FileUploadDemoProps) {
           borderRadius: "10px",
           background: "#333",
           color: "#fff",
+          zIndex: 99990
         },
       });
-      setuploadUrl(data.imgUrl)
+      setuploadUrl(data.imgUrl);
       // route here
     } else {
       toast.error("Error Uploading Image", {
@@ -41,6 +42,7 @@ export function FileUploadDemo({ setuploadUrl }: FileUploadDemoProps) {
           borderRadius: "10px",
           background: "#333",
           color: "#fff",
+          zIndex: 99990
         },
       });
     }
@@ -60,7 +62,7 @@ export function FileUploadDemo({ setuploadUrl }: FileUploadDemoProps) {
         onClick={() => {
           handleSubmit();
         }}
-        className="bg-gradient-to-bl from-[#593de6] via-[#392d82] to-[#593de6]  hover:bg-gradient-to-bl hover:from-[#221a4c] hover:via-[#593de6] hover:to-[#221a4c] transition-all duration-300 ease-in-out  flex flex-row mx-auto py-[10px] px-5 rounded-full items-center justify-center cursor-pointer text-white my-4"
+        className="bg-gradient-to-bl from-[#593de6] via-[#392d82] to-[#593de6]  hover:bg-gradient-to-bl hover:from-[#221a4c] hover:via-[#593de6] hover:to-[#221a4c] transition-all duration-300 ease-in-out  flex flex-row mx-auto py-[10px] px-10 rounded items-center justify-center cursor-pointer text-white my-4"
       >
         Upload
       </button>

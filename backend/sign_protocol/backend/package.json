@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@ethsign/sign-protocol-evm": "^1.1.1",
-    "@ethsign/sp-sdk": "^0.7.3"
+    "@ethsign/sp-sdk": "^0.7.3",
+    "hardhat-project": "file:"
   }
 }
