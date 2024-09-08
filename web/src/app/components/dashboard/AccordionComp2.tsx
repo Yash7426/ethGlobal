@@ -15,6 +15,7 @@ import { EvmChains, SignProtocolClient, SpMode } from "@ethsign/sp-sdk";
 import SignProtocol from "@/app/protocols/signProtocol";
 import CaptchaTest from "@/components/captcha";
 import DynamicFields from "@/components/attestSchema";
+import QRCODE from "@/components/QRcode";
 
 type Task = {
   name: string;
@@ -88,14 +89,14 @@ const blockchainProtocols: Protocol[] = [
     ],
   },
   {
-    name: "Solana",
+    name: "Reclaim Protocol",
     description: "A high-performance blockchain supporting fast transactions.",
     icon: "https://freelogopng.com/images/all_img/1683021055metamask-icon.png",
     tasks: [
       {
-        name: "Create a Wallet",
+        name: "Count Amazon Orders",
         desc: "Set up a Solana wallet to store your tokens.",
-        ctaNeeded: "Download Phantom Wallet",
+        ctaNeeded: <QRCODE value="uber" displayText="Scan QR"/>,
         icon: <IconTerminal2 />,
       },
       {
