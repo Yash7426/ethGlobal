@@ -16,7 +16,7 @@ import SignProtocol from "@/app/protocols/signProtocol";
 import CaptchaTest from "@/components/captcha";
 import NormalInput from "@/components/NormalInput";
 import DynamicFields from "@/components/attestSchema";
-
+import blockchainLogo from "../blockchainLogo";
 type Task = {
   name: string;
   desc: string;
@@ -34,24 +34,25 @@ type Protocol = {
 const blockchainProtocols: Protocol[] = [
   {
     name: "Sign Protocol",
-    description: "A decentralized platform that runs smart contracts.",
-    icon: "https://freelogopng.com/images/all_img/1683021055metamask-icon.png",
+    description:
+      "Sign Protocol is used  to verify human identities by requiring users to solve riddles or CAPTCHAs, with additional validation through community vouching",
+    icon: "/logo2.png",
     tasks: [
       {
         name: "Attesting Schema",
-        desc: "Deploy your first smart contract on the Ethereum network.",
+        desc: "Attest the provided schema and earn rewards",
         ctaNeeded: <CaptchaTest displayText="Test Captcha"></CaptchaTest>,
         icon: <IconTerminal2 />,
       },
       {
         name: "Creating Schema",
-        desc: "Use decentralized applications on the Ethereum blockchain.",
+        desc: "Create a schema that can only be attested by verified users",
         ctaNeeded: <DynamicFields displayText="Attest Schema" />,
         icon: <IconTerminal2 />,
       },
       {
-        name: "Deploy Smart Contract",
-        desc: "Deploy your first smart contract on the Ethereum network.",
+        name: "Socialize",
+        desc: "Get the created schema attested by 5 unique whitelisted users",
         ctaNeeded: "Install MetaMask",
         icon: <IconTerminal2 />,
       },
@@ -90,7 +91,7 @@ const blockchainProtocols: Protocol[] = [
   {
     name: "Solana",
     description: "A high-performance blockchain supporting fast transactions.",
-    icon: "https://freelogopng.com/images/all_img/1683021055metamask-icon.png",
+    icon: "/logo2.png",
     tasks: [
       {
         name: "Create a Wallet",
@@ -110,7 +111,7 @@ const blockchainProtocols: Protocol[] = [
     name: "Polkadot",
     description:
       "A multi-chain network that enables interoperability between blockchains.",
-    icon: "https://freelogopng.com/images/all_img/1683021055metamask-icon.png",
+    icon: "/logo2.png",
     tasks: [
       {
         name: "Join Parachain Auction",
@@ -129,12 +130,12 @@ const blockchainProtocols: Protocol[] = [
   {
     name: "LIT Protocol",
     description:
-      "A proof-of-stake blockchain platform with a focus on security and scalability.",
-    icon: "https://freelogopng.com/images/all_img/1683021055metamask-icon.png",
+      "We use Lit Protocol for secure encryption using MPC and TSS, ensuring privacy without any party holding the full key",
+    icon: "/logo2.png",
     tasks: [
       {
         name: "Decryption with Access Conditions",
-        desc: "Delegate your ADA to a stake pool to earn rewards.",
+        desc: "Meet the access conditions to decrypt the string and earn points",
         ctaNeeded: (
           <NormalInput
             heading="Encrypted Profile"
@@ -146,7 +147,13 @@ const blockchainProtocols: Protocol[] = [
         icon: <IconTerminal2 />,
       },
       {
-        name: "Use Plutus",
+        name: "Broadcast and collect",
+        desc: "Write and deploy smart contracts using the Plutus platform.",
+        ctaNeeded: "Access Plutus Playground",
+        icon: <IconTerminal2 />,
+      },
+      {
+        name: "Sign Transactions",
         desc: "Write and deploy smart contracts using the Plutus platform.",
         ctaNeeded: "Access Plutus Playground",
         icon: <IconTerminal2 />,
@@ -227,13 +234,15 @@ const AccordionComp2 = () => {
                 <AccordionTrigger className="relative break-words text-left">
                   <ProgressDemo progress={30} />
                   <div className="flex items-center gap-4 text-teal-50 py-4 px-4">
-                    <Image
-                      alt=""
-                      src={protocol.icon}
-                      width={1000}
-                      height={1000}
-                      className="rounded-full w-8 h-8 sm:w-12 sm:h-12"
-                    />
+                    <div className="rounded-full bg-gray-200 w-12 h-12 flex justify-center items-center">
+                      <Image
+                        src="/logo2.png"
+                        alt="blockchain Logo"
+                        width="30"
+                        height="30"
+                        className="object-cover"
+                      />
+                    </div>
                     <div className="flex flex-col gap-y-1">
                       <p className="uppercase font-[900] text-lg sm:text-xl font-primary-font text-gray-200">
                         {protocol.name}

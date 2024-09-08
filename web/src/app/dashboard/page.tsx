@@ -23,7 +23,7 @@ const page = () => {
             Hi UserName
           </h1>
           <p className="text-gray-300 font-light max-w-3xl z-50">
-            our journey towards unlocking new opportunities starts here. Each
+            Your journey towards unlocking new opportunities starts here. Each
             task you complete brings you one step closer to building a stronger,
             unique identity in the decentralized world.{" "}
           </p>
