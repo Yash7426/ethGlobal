@@ -12,7 +12,8 @@ interface IUserContext {
 
 const intialData: IUserContext = {
   username: "",
-  setUsername: () => {},
+  setUsername: () => {
+  },
   userId: "",
   setUserId: () => {},
   userInfo: {},

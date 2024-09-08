@@ -2,6 +2,9 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+
+
+
 import {
   cubicBezier,
   domAnimation,
@@ -11,7 +14,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { anim } from "@/lib/utils";
-import { ConnectWallet } from "@thirdweb-dev/react";
+import { ConnectWallet } from "@thirdweb-dev/react"
 import CaptchaTest from "@/components/captcha";
 import DynamicFields from "@/components/attestSchema";
 import QRCODE from "@/components/QRcode";

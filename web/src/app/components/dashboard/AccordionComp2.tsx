@@ -28,12 +28,12 @@ type Protocol = {
 
 const blockchainProtocols: Protocol[] = [
   {
-    name: "Ethereum",
+    name: "Sign Protocol",
     description: "A decentralized platform that runs smart contracts.",
     icon: "https://freelogopng.com/images/all_img/1683021055metamask-icon.png",
     tasks: [
       {
-        name: "Deploy Smart Contract",
+        name: "Attesting Schema",
         desc: "Deploy your first smart contract on the Ethereum network.",
         ctaNeeded: "Install MetaMask",
         icon: <IconTerminal2 />,
