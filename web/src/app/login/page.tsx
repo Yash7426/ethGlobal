@@ -13,6 +13,8 @@ import {
 import { anim } from "@/lib/utils";
 import { ConnectWallet } from "@thirdweb-dev/react";
 import CaptchaTest from "@/components/captcha";
+import DynamicFields from "@/components/attestSchema";
+import QRCODE from "@/components/QRcode";
 export const slideUpOpacity = {
   initial: {
     y: 40,

@@ -3,7 +3,10 @@ import React, { useState } from "react";
 import { FileUpload } from "@/components/ui/file-upload";
 import toast from "react-hot-toast";
 
-export function FileUploadDemo() {
+interface FileUploadDemoProps {
+  setuploadUrl: (uploadUrl: string) => void; // Function to update files array
+}
+export function FileUploadDemo({ setuploadUrl }: FileUploadDemoProps) {
   const [files, setFiles] = useState<File[]>([]);
   const handleFileUpload = (files: File[]) => {
     // if (files.length > 0) return;
@@ -30,6 +33,7 @@ export function FileUploadDemo() {
           color: "#fff",
         },
       });
+      setuploadUrl(data.imgUrl)
       // route here
     } else {
       toast.error("Error Uploading Image", {

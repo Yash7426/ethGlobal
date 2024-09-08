@@ -1,12 +1,12 @@
-import { FileUploadDemo } from '@/components/fileUpload'
-import React from 'react'
+import React from "react";
+import AadharKYC from "@/components/AadharKYC";
 
 const page = () => {
   return (
     <div>
-        <FileUploadDemo></FileUploadDemo>
+      <AadharKYC />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

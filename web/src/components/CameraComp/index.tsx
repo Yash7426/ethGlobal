@@ -3,13 +3,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
-const Home: React.FC = () => {
+interface CameraCompProps {
+  setUploadResult: (result: string | null) => void; // Function to set the upload result
+}
+
+const CameraComp: React.FC<CameraCompProps> = ({ setUploadResult }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isClient, setIsClient] = useState(false);
   const [imgSrc, setImgSrc] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
-  const [uploadResult, setUploadResult] = useState<string | null>(null);
 
   // Start the camera
   const startCamera = async () => {
@@ -22,6 +25,7 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
+    startCamera();
     setIsClient(true);
   }, []);
   // Capture image
@@ -85,35 +89,31 @@ const Home: React.FC = () => {
   if (!isClient) return null;
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-4">
-      <h1 className="text-2xl font-bold text-gray-300 py-2">Capture and Upload Image</h1>
+    <div className="flex flex-col items-center justify-center space-y-4 w-full max-w-4xl mx-auto min-h-96 border border-dashed bg-white dark:bg-black border-neutral-200 dark:border-neutral-800 rounded-lg my-4 px-4 pb-4">
+      <h1 className="text-2xl font-bold text-gray-300 py-2">
+        Capture and Upload Image
+      </h1>
       <video ref={videoRef} autoPlay className="w-[520px] h-[380px]" />
       <canvas ref={canvasRef} className="hidden" width={520} height={380} />
       {imgSrc && <img src={imgSrc} alt="Captured" className="border" />}
 
       <div className="flex space-x-4">
         <button
-          className="px-4 py-2 bg-blue-500 text-white rounded"
-          onClick={startCamera}
-        >
-          Start Camera
-        </button>
-        <button
           className="px-4 py-2 bg-green-500 text-white rounded"
           onClick={captureImage}
         >
-          Capture Image
+          Capture
         </button>
         <button
           className="px-4 py-2 bg-purple-500 text-white rounded"
           onClick={uploadImage}
           disabled={!imgSrc || uploading}
         >
-          {uploading ? "Uploading..." : "Upload to Cloudinary"}
+          {uploading ? "Uploading..." : "Upload"}
         </button>
       </div>
     </div>
   );
 };
 
-export default Home;
+export default CameraComp;
