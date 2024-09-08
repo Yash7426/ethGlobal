@@ -90,7 +90,9 @@ const page = () => {
     setMessage(false);
     if(address != undefined) {
     var tx1 = await ccnsRegister.register(user+".ccns",address);
+    //@ts-ignore
     await tx1.wait();
+    //@ts-ignore
     console.log(tx1.hash);
     setUsername(user);
     setUserId(address);

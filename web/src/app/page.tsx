@@ -20,6 +20,7 @@ import TextReveal from "@/components/TextReveal";
 import BentoGrid from "./components/BentoGrid";
 import Ripple from "@/components/magicui/ripple";
 
+
 const Spline = React.lazy(() => import("@splinetool/react-spline/next"));
 
 export const slideUpOpacity = {

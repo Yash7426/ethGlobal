@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ethsign/sp-sdk": "^0.7.3",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-progress": "^1.1.0",
@@ -23,9 +24,7 @@
     "class-variance-authority": "^0.7.0",
     "cloudinary": "^2.0.0",
     "clsx": "^2.1.1",
-    "cobe": "^0.6.3",
-    "ethers": "^6.13.2",
-    "ethglobal": "file:",
+    "ethers": "^5.7.2",
     "faker": "5.5.3",
     "framer-motion": "^11.5.4",
     "lucide-react": "^0.436.0",
