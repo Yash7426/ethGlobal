@@ -14,6 +14,7 @@ import { CardSpotlight } from "./card-spotlight";
 import { EvmChains, SignProtocolClient, SpMode } from "@ethsign/sp-sdk";
 import SignProtocol from "@/app/protocols/signProtocol";
 import CaptchaTest from "@/components/captcha";
+import NormalInput from "@/components/NormalInput";
 import DynamicFields from "@/components/attestSchema";
 
 type Task = {
@@ -126,15 +127,22 @@ const blockchainProtocols: Protocol[] = [
     ],
   },
   {
-    name: "Cardano",
+    name: "LIT Protocol",
     description:
       "A proof-of-stake blockchain platform with a focus on security and scalability.",
     icon: "https://freelogopng.com/images/all_img/1683021055metamask-icon.png",
     tasks: [
       {
-        name: "Delegate ADA",
+        name: "Decryption with Access Conditions",
         desc: "Delegate your ADA to a stake pool to earn rewards.",
-        ctaNeeded: "Select a Stake Pool",
+        ctaNeeded: (
+          <NormalInput
+            heading="Encrypted Profile"
+            title="Decrypted Output"
+            buttonText="Check"
+            displayText="Test Decryption"
+          ></NormalInput>
+        ),
         icon: <IconTerminal2 />,
       },
       {

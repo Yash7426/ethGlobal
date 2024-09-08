@@ -31,6 +31,7 @@ export function FileUploadDemo({ setuploadUrl }: FileUploadDemoProps) {
           borderRadius: "10px",
           background: "#333",
           color: "#fff",
+          zIndex: 99990
         },
       });
       setuploadUrl(data.imgUrl);
@@ -41,6 +42,7 @@ export function FileUploadDemo({ setuploadUrl }: FileUploadDemoProps) {
           borderRadius: "10px",
           background: "#333",
           color: "#fff",
+          zIndex: 99990
         },
       });
     }

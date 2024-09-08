@@ -99,6 +99,7 @@ const DynamicFields: React.FC<ModalProps> = ({
           borderRadius: "10px",
           background: "#333",
           color: "#fff",
+          zIndex: 99990
         },
       });
     } else {
@@ -108,6 +109,7 @@ const DynamicFields: React.FC<ModalProps> = ({
           borderRadius: "10px",
           background: "#333",
           color: "#fff",
+          zIndex: 99990
         },
       });
       resetForm();

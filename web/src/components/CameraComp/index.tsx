@@ -66,6 +66,7 @@ const CameraComp: React.FC<CameraCompProps> = ({ setUploadResult }) => {
             borderRadius: "10px",
             background: "#333",
             color: "#fff",
+            zIndex: 99990
           },
         });
         console.log(data.imgUrl);
@@ -77,6 +78,7 @@ const CameraComp: React.FC<CameraCompProps> = ({ setUploadResult }) => {
             borderRadius: "10px",
             background: "#333",
             color: "#fff",
+            zIndex: 99990
           },
         });
         setUploadResult("Upload failed");

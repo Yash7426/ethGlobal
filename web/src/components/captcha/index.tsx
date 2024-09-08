@@ -89,6 +89,7 @@ const CaptchaTest: React.FC<ModalProps> = ({
             borderRadius: "10px",
             background: "#333",
             color: "#fff",
+            zIndex: 99990
           },
         });
       } else {
@@ -99,6 +100,7 @@ const CaptchaTest: React.FC<ModalProps> = ({
             borderRadius: "10px",
             background: "#333",
             color: "#fff",
+            zIndex: 99990
           },
         });
         loadCaptchaEnginge(6); // Reload the captcha after successful match
