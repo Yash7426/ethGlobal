@@ -1,5 +1,6 @@
 import React from "react";
 import { m } from "framer-motion";
+import Image from "next/image";
 
 const Navbar = () => {
   return (
@@ -11,7 +12,16 @@ const Navbar = () => {
     >
       <nav className="max-w-5xl mx-auto flex justify-between items-center w-full h-full px-7">
         <div className="">
-          <p className="text-xl font-bold text-primary-50">LOGO</p>
+          {/* <p className="text-xl font-bold text-primary-50">
+
+          </p> */}
+          <Image
+            alt=""
+            src="/logo.png"
+            width={1000}
+            height={1000}
+            className="w-[200px] h-[60px]"
+          />
           {/* Add more navigation links or components */}
         </div>
         <div className="flex justify-center gap-8">
