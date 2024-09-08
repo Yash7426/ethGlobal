@@ -2,7 +2,7 @@
 
 ![cover](https://github.com/user-attachments/assets/9946b6d7-279a-4134-ae4f-fc98cea76006)
 
-[Well-crafted document](https://drive.google.com/file/d/1rbG47tGGpYsWcPDiP3e2BgoElbPfcMNg/view?usp=sharing)
+[Here's the link to our presentation to undersatnd our project better!](https://drive.google.com/file/d/1rbG47tGGpYsWcPDiP3e2BgoElbPfcMNg/view?usp=sharing)
 
 Welcome to **Humanized**, a cross-chain identity verification platform that ensures fairness in blockchain airdrops by consolidating multiple blockchain addresses into a single, verifiable identity.
 
@@ -13,7 +13,7 @@ Humanized is designed to unify blockchain addresses and provide robust human ver
 Humanized uses domain-like names to consolidate blockchain addresses under a single, user-controlled identity. Users complete tasks to earn points, which ensures only genuine human users can participate in activities such as airdrops.
 ---
 
-
+[Here's a demonstration of Humanised (with Audio)]
 
 https://github.com/user-attachments/assets/ddd0a010-6e7c-4f00-a0b5-58004a67de22
 
