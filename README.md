@@ -11,13 +11,10 @@ Humanized is designed to unify blockchain addresses and provide robust human ver
 
 ## 🛠️ **How Humanized Works**
 Humanized uses domain-like names to consolidate blockchain addresses under a single, user-controlled identity. Users complete tasks to earn points, which ensures only genuine human users can participate in activities such as airdrops.
----
 
-[Here's a demonstration of Humanised (with Audio)]
-
+**Here's a demonstration of Humanised (with Audio)**
+ 
 https://github.com/user-attachments/assets/ddd0a010-6e7c-4f00-a0b5-58004a67de22
-
-
 
 ---
 
