@@ -1,11 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  loadCaptchaEnginge,
-  LoadCanvasTemplate,
-  validateCaptcha,
-  // @ts-ignore
-} from "react-simple-captcha";
+// import {
+//   loadCaptchaEnginge,
+//   LoadCanvasTemplate,
+//   validateCaptcha,
+// } from "react-simple-captcha";
 import {
   Modal,
   ModalBody,
@@ -16,7 +15,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import SignProtocol from "@/app/protocols/signProtocol";
-import toast from "react-hot-toast";
+import {toast} from "react-hot-toast";
 import { EvmChains, SignProtocolClient, SpMode } from "@ethsign/sp-sdk";
 import { useAddress, useSigner } from "@thirdweb-dev/react";
 import { Signer } from "ethers";
@@ -49,17 +48,37 @@ const CaptchaTest: React.FC<ModalProps> = ({
   const address = useAddress();
   const signer = useSigner();
 
-  const newUser = new SignProtocol(client,address as string,signer as Signer);
+  // const newUser = new SignProtocol(client,address as string,signer as Signer);
 
   useEffect(() => {
-    loadCaptchaEnginge(8); // Load the captcha engine with 8 characters
+    // loadCaptchaEnginge(8); // Load the captcha engine with 8 characters
   }, []);
 
+  async function createNotaryAttestation(name: string, message: string,signer:string): Promise<string> {
+    return client.createAttestation({
+      schemaId: "0x11f",
+      data: {
+        name,
+        message
+      },
+      indexingValue: signer.toLowerCase()
+    }).then((res) => {
+      console.log(res);
+      return res.attestationId;
+
+    }).catch((e) => {
+      console.log(e);
+      return "You are not valid attester";
+    });
+  
+}
+
   const handleSubmit = async () => {
-    if (validateCaptcha(userCaptcha)) {
+    // if (validateCaptcha(userCaptcha)) {
       // do your stuff
-      const res = await newUser.createNotaryAttestation(name, message, "0x11f");
-      if (res.slice(0, 5) == "Error") {
+      const res = await createNotaryAttestation(name, message, "0x11f");
+      console.log(res);
+      if (res == "You are not valid attester") {
         toast.error("Error Completing Task", {
           style: {
             borderRadius: "10px",
@@ -68,20 +87,22 @@ const CaptchaTest: React.FC<ModalProps> = ({
           },
         });
       } else {
-        toast(`Successfully Completed Task : ${res}`, {
-          icon: "👏",
+        console.log("validated");
+        toast.success(`Successfully Completed Task : ${res}`, {
+
+          duration:10,
           style: {
             borderRadius: "10px",
             background: "#333",
             color: "#fff",
           },
         });
-        loadCaptchaEnginge(8); // Reload the captcha after successful match
+        // loadCaptchaEnginge(8); // Reload the captcha after successful match
         resetForm();
       }
-    } else {
-      setCaptchaError(true);
-    }
+    // } else {
+    //   setCaptchaError(true);
+    // }
   };
 
   const resetForm = () => {
@@ -108,7 +129,7 @@ const CaptchaTest: React.FC<ModalProps> = ({
               <div className="w-full max-w-sm">
                 <div className="flex flex-col items-center space-y-4">
                   <div className="mt-3">
-                    <LoadCanvasTemplate reloadText=" " reloadColor="#593de6" />
+                    {/*<LoadCanvasTemplate reloadText=" " reloadColor="#593de6" />*/}
                   </div>
 
                   <div className="mt-3 w-full">

@@ -56,6 +56,7 @@ export default class SignProtocol {
     message: string,
     schemeId: string
   ): Promise<string> {
+    console.log(this.address);
     this.client
       .createAttestation({
         schemaId: schemeId,
@@ -66,6 +67,7 @@ export default class SignProtocol {
         indexingValue: this.address ? this.address?.toLowerCase() : "",
       })
       .then((res) => {
+        console.log(res);
         return res.attestationId;
       })
       .catch((e) => {

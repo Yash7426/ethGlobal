@@ -79,14 +79,25 @@ const page = () => {
     console.log(address)
     const tx = await ccnsLookup.lookup(user);
     console.log(tx)
-    if(tx) {
-      setIsSubmitted(true);
+    if(tx && tx != "0x0000000000000000000000000000000000000000") {
+      
+      setIsSubmitted(false);
       setMessage(true);
     } else {
       setMessage(false);
+      if(address != undefined) {
+        var tx1 = await ccnsRegister.register(user+".ccns",address);
+        //@ts-ignore
+        await tx1.wait();
+        //@ts-ignore
+        console.log(tx1.hash);
+        setUsername(user);
+        setUserId(address);
+        
+        router.push("/dashboard");
+      }
     }
   }catch(e) {
-    console.log(e);
     setMessage(false);
     if(address != undefined) {
     var tx1 = await ccnsRegister.register(user+".ccns",address);
